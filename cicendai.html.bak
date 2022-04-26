@@ -1,0 +1,2918 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>Strata - 🏴︱cicendai</title>
+    <meta name="viewport" content="width=device-width">
+    <style>
+        @font-face {
+            font-family: Whitney;
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-300.woff);
+            font-weight: 300;
+        }
+
+        @font-face {
+            font-family: Whitney;
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-400.woff);
+            font-weight: 400;
+        }
+
+        @font-face {
+            font-family: Whitney;
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-500.woff);
+            font-weight: 500;
+        }
+
+        @font-face {
+            font-family: Whitney;
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-600.woff);
+            font-weight: 600;
+        }
+
+        @font-face {
+            font-family: Whitney;
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-700.woff);
+            font-weight: 700;
+        }
+
+        body {
+            background-color: #36393e;
+            color: #dcddde;
+            font-family: "Whitney", "Helvetica Neue", Helvetica, Arial, sans-serif;
+            font-size: 17px;
+            font-weight: 400;
+        }
+
+        a {
+            color: #00aff4;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        img {
+            object-fit: contain;
+        }
+
+        .markdown {
+            max-width: 100%;
+            line-height: 1.3;
+            overflow-wrap: break-word;
+        }
+
+        .preserve-whitespace {
+            white-space: pre-wrap;
+        }
+
+        .spoiler-text {
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 3px;
+        }
+
+        .spoiler-text--hidden {
+            cursor: pointer;
+            background-color: #202225;
+            color: rgba(0, 0, 0, 0);
+        }
+
+        .spoiler-text--hidden:hover {
+            background-color: rgba(32, 34, 37, 0.8);
+        }
+
+        .spoiler-text--hidden::selection {
+            color: rgba(0, 0, 0, 0);
+        }
+
+        .quote {
+            display: flex;
+            margin: 0.05em 0;
+        }
+
+        .quote::before {
+            content: "";
+            margin-right: 0.5em;
+            border: 2px solid #4f545c;
+            border-radius: 3px;
+        }
+
+        .pre {
+            background-color: #2f3136;
+            font-family: "Consolas", "Courier New", Courier, monospace;
+        }
+
+        .pre--multiline {
+            margin-top: 0.25em;
+            padding: 0.5em;
+            border: 2px solid #282b30;
+            border-radius: 5px;
+            color: #b9bbbe;
+        }
+
+        .pre--multiline.hljs {
+            background-color: #2f3136;
+            color: #b9bbbe;
+        }
+
+        .pre--inline {
+            padding: 2px;
+            border-radius: 3px;
+            font-size: 0.85em;
+        }
+
+        .mention {
+            border-radius: 3px;
+            padding: 0 2px;
+            color: #7289da;
+            background-color: rgba(114, 137, 218, .1);
+            font-weight: 500;
+        }
+
+        .timestamp {
+            border-radius: 3px;
+            padding: 0 2px;
+            background-color: rgba(255, 255, 255, 0.06);
+        }
+
+        .emoji {
+            width: 1.325em;
+            height: 1.325em;
+            margin: 0 0.06em;
+            vertical-align: -0.4em;
+        }
+
+        .emoji--small {
+            width: 1em;
+            height: 1em;
+        }
+
+        .emoji--large {
+            width: 2.8em;
+            height: 2.8em;
+        }
+
+        .preamble {
+            display: grid;
+            margin: 0 0.3em 0.6em 0.3em;
+            max-width: 100%;
+            grid-template-columns: auto 1fr;
+        }
+
+        .preamble__guild-icon-container {
+            grid-column: 1;
+        }
+
+        .preamble__guild-icon {
+            max-width: 88px;
+            max-height: 88px;
+        }
+
+        .preamble__entries-container {
+            grid-column: 2;
+            margin-left: 0.6em;
+        }
+
+        .preamble__entry {
+            font-size: 1.4em;
+            color: #ffffff;
+        }
+
+        .preamble__entry--small {
+            font-size: 1em;
+        }
+
+        .chatlog {
+            max-width: 100%;
+        }
+
+        .chatlog__message-group {
+            display: grid;
+            margin: 0 0.6em;
+            padding: 0.9em 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            grid-template-columns: auto 1fr;
+        }
+
+        .chatlog__reference-symbol {
+            grid-column: 1;
+            margin: 8px 4px 4px 18px;
+            border-left: 2px solid #4f545c;
+            border-top: 2px solid #4f545c;
+            border-radius: 8px 0 0 0;
+        }
+
+        .chatlog__reference {
+            display: flex;
+            grid-column: 2;
+            margin-bottom: 0.25em;
+            font-size: 0.875em;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            align-items: center;
+            color: #b5b6b8;
+        }
+
+        .chatlog__reference-avatar {
+            border-radius: 50%;
+            width: 16px;
+            height: 16px;
+            margin-right: 0.25em;
+        }
+
+        .chatlog__reference-name {
+            margin-right: 0.3em;
+            font-weight: 600;
+        }
+
+        .chatlog__reference-content {
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .chatlog__reference-content a:hover {
+            text-decoration: none;
+        }
+
+        .chatlog__reference-link {
+            cursor: pointer;
+            color: #b5b6b8;
+        }
+
+        .chatlog__reference-link * {
+            display: inline;
+            pointer-events: none;
+        }
+
+        .chatlog__reference-link:hover {
+            color: #ffffff;
+        }
+
+        .chatlog__reference-link:hover *:not(.spoiler-text) {
+            color: #ffffff;
+        }
+
+        .chatlog__reference-edited-timestamp {
+            margin-left: 0.25em;
+            font-size: 0.8em;
+            color: rgba(255, 255, 255, 0.2);
+        }
+
+        .chatlog__author-avatar-container {
+            grid-column: 1;
+            width: 40px;
+            height: 40px;
+            margin-right: 16px;
+        }
+
+        .chatlog__author-avatar {
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+        }
+
+        .chatlog__messages {
+            grid-column: 2;
+            min-width: 50%;
+        }
+
+        .chatlog__author-name {
+            font-weight: 500;
+            color: #ffffff;
+        }
+
+        .chatlog__timestamp {
+            margin-left: 0.3em;
+            font-size: 0.75em;
+            color: rgba(255, 255, 255, 0.2);
+        }
+
+        .chatlog__message {
+            padding: 0.1em 0.3em;
+            margin: 0 -0.3em;
+            background-color: transparent;
+            transition: background-color 1s ease;
+        }
+
+        .chatlog__message--highlighted {
+            background-color: rgba(114, 137, 218, 0.2);
+        }
+
+        .chatlog__message--pinned {
+            background-color: rgba(249, 168, 37, 0.05);
+        }
+
+        .chatlog__content {
+            font-size: 0.95em;
+            word-wrap: break-word;
+        }
+
+        .chatlog__edited-timestamp {
+            margin-left: 0.15em;
+            font-size: 0.8em;
+        }
+
+        .chatlog__attachment {
+            display: inline-block;
+            position: relative;
+            margin-top: 0.3em;
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .chatlog__attachment--hidden {
+            cursor: pointer;
+            box-shadow: 0 0 1px 1px rgba(0, 0, 0, 0.1);
+        }
+
+        .chatlog__attachment--hidden * {
+            pointer-events: none;
+        }
+
+        .chatlog__attachment-spoiler-caption {
+            display: none;
+            z-index: 999;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            padding: 0.4em 0.8em;
+            background-color: rgba(0, 0, 0, 0.9);
+            border-radius: 20px;
+            color: #dcddde;
+            font-size: 0.9em;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+        }
+
+        .chatlog__attachment--hidden .chatlog__attachment-spoiler-caption {
+            display: block;
+        }
+
+        .chatlog__attachment--hidden:hover .chatlog__attachment-spoiler-caption {
+            color: #fff;
+        }
+
+        .chatlog__attachment-media {
+            vertical-align: top;
+            max-width: 45vw;
+            max-height: 500px;
+            border-radius: 3px;
+            min-height: 100px;
+        }
+
+        .chatlog__attachment--hidden .chatlog__attachment-media {
+            filter: blur(44px);
+        }
+
+        .chatlog__attachment-generic {
+            width: 100%;
+            max-width: 520px;
+            height: 40px;
+            padding: 10px;
+            background-color: #2f3136;
+            border: 1px solid #292b2f;
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .chatlog__attachment--hidden .chatlog__attachment-generic {
+            filter: blur(44px);
+        }
+
+        .chatlog__attachment-generic-icon {
+            float: left;
+            width: 30px;
+            height: 100%;
+            margin-right: 10px;
+        }
+
+        .chatlog__attachment-generic-size {
+            color: #72767d;
+            font-size: 12px;
+        }
+
+        .chatlog__attachment-generic-name {
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+        }
+
+        .chatlog__edited-timestamp {
+            color: rgba(255, 255, 255, 0.2);
+        }
+
+        .chatlog__embed {
+            display: flex;
+            margin-top: 0.3em;
+            max-width: 520px;
+        }
+
+        .chatlog__embed-color-pill {
+            flex-shrink: 0;
+            width: 0.25em;
+            border-top-left-radius: 3px;
+            border-bottom-left-radius: 3px;
+        }
+
+        .chatlog__embed-color-pill--default {
+            background-color: #202225;
+        }
+
+        .chatlog__embed-content-container {
+            display: flex;
+            flex-direction: column;
+            padding: 0.5em 0.6em;
+            background-color: rgba(46, 48, 54, 0.3);
+            border: 1px solid rgba(46, 48, 54, 0.6);
+            border-top-right-radius: 3px;
+            border-bottom-right-radius: 3px;
+        }
+
+        .chatlog__embed-content {
+            display: flex;
+            width: 100%;
+        }
+
+        .chatlog__embed-text {
+            flex: 1;
+        }
+
+        .chatlog__embed-author {
+            display: flex;
+            margin-bottom: 0.3em;
+            align-items: center;
+        }
+
+        .chatlog__embed-author-icon {
+            margin-right: 0.5em;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+        }
+
+        .chatlog__embed-author-name {
+            font-size: 0.875em;
+            font-weight: 600;
+            color: #ffffff
+        }
+
+        .chatlog__embed-author-name-link {
+            color: #ffffff;
+        }
+
+        .chatlog__embed-title {
+            margin-bottom: 0.2em;
+            font-size: 0.875em;
+            font-weight: 600;
+            color: #ffffff;
+        }
+
+        .chatlog__embed-description {
+            font-weight: 500;
+            font-size: 0.85em;
+            color: #dcddde;
+        }
+
+        .chatlog__embed-fields {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0 0.5em;
+        }
+
+        .chatlog__embed-field {
+            flex: 0;
+            min-width: 100%;
+            max-width: 506px;
+            padding-top: 0.6em;
+            font-size: 0.875em;
+        }
+
+        .chatlog__embed-field--inline {
+            flex: 1;
+            flex-basis: auto;
+            min-width: 150px;
+        }
+
+        .chatlog__embed-field-name {
+            margin-bottom: 0.2em;
+            font-weight: 600;
+            color: #ffffff;
+        }
+
+        .chatlog__embed-field-value {
+            font-weight: 500;
+            color: #dcddde;
+        }
+
+        .chatlog__embed-thumbnail {
+            flex: 0;
+            margin-left: 1.2em;
+            max-width: 80px;
+            max-height: 80px;
+            border-radius: 3px;
+        }
+
+        .chatlog__embed-image-container {
+            margin-top: 0.6em;
+        }
+
+        .chatlog__embed-image {
+            max-width: 500px;
+            max-height: 400px;
+            border-radius: 3px;
+        }
+
+        .chatlog__embed-footer {
+            margin-top: 0.6em;
+            color: #dcddde;
+        }
+
+        .chatlog__embed-footer-icon {
+            margin-right: 0.2em;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            vertical-align: middle;
+        }
+
+        .chatlog__embed-footer-text {
+            vertical-align: middle;
+            font-size: 0.75em;
+            font-weight: 500;
+        }
+
+        .chatlog__embed-plainimage {
+            vertical-align: top;
+            max-width: 45vw;
+            max-height: 500px;
+            border-radius: 3px;
+        }
+
+        .chatlog__embed-spotify {
+            border: 0;
+        }
+
+        .chatlog__embed-youtube-container {
+            margin-top: 0.6em;
+        }
+
+        .chatlog__embed-youtube {
+            border: 0;
+            border-radius: 3px;
+        }
+
+        .chatlog__reactions {
+            display: flex;
+        }
+
+        .chatlog__reaction {
+            display: flex;
+            align-items: center;
+            margin: 0.35em 0.1em 0.1em 0.1em;
+            padding: 0.2em 0.35em;
+            background-color: rgba(255, 255, 255, 0.05);
+            border-radius: 3px;
+        }
+
+        .chatlog__reaction-count {
+            min-width: 9px;
+            margin-left: 0.35em;
+            font-size: 0.875em;
+            color: rgba(255, 255, 255, 0.3);
+        }
+
+        .chatlog__bot-tag {
+            position: relative;
+            top: -.1em;
+            margin-left: 0.3em;
+            padding: 0.05em 0.3em;
+            border-radius: 3px;
+            line-height: 1.3;
+            background-color: #5865F200;
+            color: #ffffff00;
+            font-size: 0.625em;
+            font-weight: 500;
+        }
+
+        .postamble {
+            margin: 1.4em 0.3em 0.6em 0.3em;
+            padding: 1em;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .postamble__entry {
+            color: #ffffff;
+        }
+    </style>
+    <link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/solarized-dark.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/highlight.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('.pre--multiline').forEach(block => hljs.highlightBlock(block));
+        });
+    </script>
+    <script>
+        function scrollToMessage(event, id) {
+            var element = document.getElementById('message-' + id);
+
+            if (element) {
+                event.preventDefault();
+
+                element.classList.add('chatlog__message--highlighted');
+
+                window.scrollTo({
+                    top: element.getBoundingClientRect().top - document.body.getBoundingClientRect().top - (window.innerHeight / 2),
+                    behavior: 'smooth'
+                });
+
+                window.setTimeout(function() {
+                    element.classList.remove('chatlog__message--highlighted');
+                }, 2000);
+            }
+        }
+
+        function showSpoiler(event, element) {
+            if (element && element.classList.contains('spoiler-text--hidden')) {
+                event.preventDefault();
+                element.classList.remove('spoiler-text--hidden');
+            }
+            if (element && element.classList.contains('chatlog__attachment--hidden')) {
+                event.preventDefault();
+                element.classList.remove('chatlog__attachment--hidden');
+            }
+        }
+    </script>
+  </head>
+  <body>
+    <svg style="display: none">
+      <symbol id="icon-attachment" viewBox="0 0 720 960">
+        <path fill="#f4f5fb"
+d="M50,935a25,25,0,0,1-25-25V50A25,25,0,0,1,50,25H519.6L695,201.32V910a25,25,0,0,1-25,25Z"></path>
+        <path fill="#7789c4"
+d="M509.21,50,670,211.63V910H50V50H509.21M530,0H50A50,50,0,0,0,0,50V910a50,50,0,0,0,50,50H670a50,50,0,0,0,50-50h0V191Z"></path>
+        <path fill="#f4f5fb"
+d="M530,215a25,25,0,0,1-25-25V50a25,25,0,0,1,16.23-23.41L693.41,198.77A25,25,0,0,1,670,215Z"></path>
+        <path fill="#7789c4"
+d="M530,70.71,649.29,190H530V70.71M530,0a50,50,0,0,0-50,50V190a50,50,0,0,0,50,50H670a50,50,0,0,0,50-50Z"></path>
+      </symbol> </svg>
+    <div class="preamble">
+      <div class="preamble__guild-icon-container"> <img
+          class="preamble__guild-icon"
+src="https://cdn.discordapp.com/icons/910872207062892594/a77ca7a12593402e62857a77249d9268.png"
+          alt="Guild icon" loading="lazy"> </div>
+      <div class="preamble__entries-container">
+        <div class="preamble__entry">Strata</div>
+        <div class="preamble__entry">━━━┏━worlds &amp; craft━┓ /
+          🏴︱cicendai</div>
+      </div>
+    </div>
+    <div class="chatlog">
+      <div class="chatlog__message-group">
+        <div class="chatlog__author-avatar-container"> <img
+            class="chatlog__author-avatar"
+src="https://cdn.discordapp.com/avatars/924937596298207292/dd4c8d69a383b05dbadd341a5e14b224.png?size=128"
+            alt="Avatar" loading="lazy"> </div>
+        <div class="chatlog__messages"> <span
+            class="chatlog__author-name" title="Peter Percy#0000"
+            data-user-id="924937596298207292" style=""><a name="Part5"
+              id="Part5"></a>Peter Percy</span> <span
+            class="chatlog__bot-tag">BOT</span> <span
+            class="chatlog__timestamp">27-Dec-21 08:11 AM</span>
+          <div class="chatlog__message "
+            data-message-id="924937597644587059"
+            id="message-924937597644587059" title="Message sent:
+            27-Dec-21 08:11 AM">
+            <div class="chatlog__content">
+              <div class="markdown"> <span class="preserve-whitespace">(<a moz-do-not-send="true" href="commanddeck.html#Stealth_Boarding_the_Cicendai">Continued From...</a>)<br>Shortly before the team starts its attempt to access the doorlock Peter attempts to get peole to compose themselves "Kshi and Λxqelo I want you t otake a moment to compose yourselves, and walk us through step by step what you are going to do."</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="chatlog__message-group">
+        <div class="chatlog__author-avatar-container"> <img
+            class="chatlog__author-avatar"
+src="https://cdn.discordapp.com/avatars/924937596298207292/04f70f833ff4ce0e3eb2b227ad6fe194.png?size=128"
+            alt="Avatar" loading="lazy"> </div>
+        <div class="chatlog__messages"> <span
+            class="chatlog__author-name" title="Varus Sadratis#0000"
+            data-user-id="924937596298207292" style="">Varus Sadratis</span>
+          <span class="chatlog__bot-tag">BOT</span> <span
+            class="chatlog__timestamp">27-Dec-21 10:10 PM</span>
+          <div class="chatlog__message "
+            data-message-id="925148545760231505"
+            id="message-925148545760231505" title="Message sent:
+            27-Dec-21 10:10 PM">
+            <div class="chatlog__content">
+              <div class="markdown"> <span class="preserve-whitespace">Varus walks walks walks like he has a wedgy along the hull of the ship toward the airlock. "Here a question, that should been asked before this started." He ponders out loud. "Does this atmosphere combust with electrical discharges... from say a stunner?"</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="chatlog__message-group">
+        <div class="chatlog__author-avatar-container"> <img
+            class="chatlog__author-avatar"
+src="https://cdn.discordapp.com/avatars/924937596298207292/dd4c8d69a383b05dbadd341a5e14b224.png?size=128"
+            alt="Avatar" loading="lazy"> </div>
+        <div class="chatlog__messages"> <span
+            class="chatlog__author-name" title="Peter Percy#0000"
+            data-user-id="924937596298207292" style="">Peter Percy</span>
+          <span class="chatlog__bot-tag">BOT</span> <span
+            class="chatlog__timestamp">28-Dec-21 02:29 AM</span>
+          <div class="chatlog__message "
+            data-message-id="925213731061895228"
+            id="message-925213731061895228" title="Message sent:
+            28-Dec-21 02:29 AM">
+            <div class="chatlog__content">
+              <div class="markdown"> <span class="preserve-whitespace">"If we let the airlock do it's job we shall be fine. No Oxygen out here, and none of this stuff in there."</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="chatlog__message-group">
+        <div class="chatlog__author-avatar-container"> <img
+            class="chatlog__author-avatar"
+src="https://cdn.discordapp.com/avatars/924937596298207292/04f70f833ff4ce0e3eb2b227ad6fe194.png?size=128"
+            alt="Avatar" loading="lazy"> </div>
+        <div class="chatlog__messages"> <span
+            class="chatlog__author-name" title="Varus Sadratis#0000"
+            data-user-id="924937596298207292" style="">Varus Sadratis</span>
+          <span class="chatlog__bot-tag">BOT</span> <span
+            class="chatlog__timestamp">28-Dec-21 02:49 AM</span>
+          <div class="chatlog__message "
+            data-message-id="925218934368645120"
+            id="message-925218934368645120" title="Message sent:
+            28-Dec-21 02:49 AM">
+            <div class="chatlog__content">
+              <div class="markdown"> <span class="preserve-whitespace">"I want to use the higher pressure to shoot the tranq gas into the cargo bay." Varus suggest as they make their way to the airlock.</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="chatlog__message-group">
+        <div class="chatlog__author-avatar-container"> <img
+            class="chatlog__author-avatar"
+src="https://cdn.discordapp.com/avatars/576344951319953418/cb25630f3694c6ba673e843fec22bd0c.png?size=128"
+            alt="Avatar" loading="lazy"> </div>
+        <div class="chatlog__messages"> <span
+            class="chatlog__author-name" title="GM#4115"
+            data-user-id="576344951319953418" style="color:
+            rgb(54,57,62)">●</span> <span class="chatlog__timestamp">28-Dec-21
+
+            02:51 AM</span>
+          <div class="chatlog__message "
+            data-message-id="925219439559983186"
+            id="message-925219439559983186" title="Message sent:
+            28-Dec-21 02:51 AM">
+            <div class="chatlog__content">
+              <div class="markdown"> <span class="preserve-whitespace">Several of the gentle Jelly Orbs bob around the EVA crew as if attracted to them. Some have latched on to the hull in various places, whereas the more sensible have scurried off.</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="chatlog__message-group">
+        <div class="chatlog__author-avatar-container"> <img
+            class="chatlog__author-avatar"
+src="https://cdn.discordapp.com/avatars/924937596298207292/4a0359d3310fd86c5db90d70ca49f65b.png?size=128"
+            alt="Avatar" loading="lazy"> </div>
+        <div class="chatlog__messages"> <span
+            class="chatlog__author-name" title="Kshi-Voha
+            Banks'fiy'Hrakoea#0000" data-user-id="924937596298207292"
+            style="">Kshi-Voha Banks'fiy'Hrakoea</span> <span
+            class="chatlog__bot-tag">BOT</span> <span
+            class="chatlog__timestamp">28-Dec-21 02:51 AM</span>
+          <div class="chatlog__message "
+            data-message-id="925219444345696277"
+            id="message-925219444345696277" title="Message sent:
+            28-Dec-21 02:51 AM">
+            <div class="chatlog__content">
+              <div class="markdown"> <span class="preserve-whitespace">Hobbling slightly from the strenuous "leg day" he's been having, Kshi makes his way shimmying across the hull with a combination of grapples, mag-boots and gravitic assistance from his belt.
+
+"We've got a relay between Marge's creepy key, which by the way... is creepy. It'll bounce the connection with the Cicendai's systems, between my HUD to the Sunpear's bridge and Λxqelo's computer. Where is that nightmare bug?"</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="chatlog__message-group">
+        <div class="chatlog__author-avatar-container"> <img
+            class="chatlog__author-avatar"
+src="https://cdn.discordapp.com/avatars/924937596298207292/306aa92233e1a42c488b69aa1ba81ff1.png?size=128"
+            alt="Avatar" loading="lazy"> </div>
+        <div class="chatlog__messages"> <span
+            class="chatlog__author-name" title="The Arachnid#0000"
+            data-user-id="924937596298207292" style="">The Arachnid</span>
+          <span class="chatlog__bot-tag">BOT</span> <span
+            class="chatlog__timestamp">28-Dec-21 02:51 AM</span>
+          <div class="chatlog__message "
+            data-message-id="925219447390748682"
+            id="message-925219447390748682" title="Message sent:
+            28-Dec-21 02:51 AM">
+            <div class="chatlog__content">
+              <div class="markdown"> <span class="preserve-whitespace">The automaton finds a data-port near the starboard airlock - used mainly by maintenance crews, and docks.</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="chatlog__message-group">
+        <div class="chatlog__author-avatar-container"> <img
+            class="chatlog__author-avatar"
+src="https://cdn.discordapp.com/avatars/924937596298207292/dd4c8d69a383b05dbadd341a5e14b224.png?size=128"
+            alt="Avatar" loading="lazy"> </div>
+        <div class="chatlog__messages"> <span
+            class="chatlog__author-name" title="Peter Percy#0000"
+            data-user-id="924937596298207292" style="">Peter Percy</span>
+          <span class="chatlog__bot-tag">BOT</span> <span
+            class="chatlog__timestamp">28-Dec-21 02:53 AM</span>
+          <div class="chatlog__message "
+            data-message-id="925219969589973022"
+            id="message-925219969589973022" title="Message sent:
+            28-Dec-21 02:53 AM">
+            <div class="chatlog__content">
+              <div class="markdown"> <span class="preserve-whitespace">Reposning to Varus peter says "We  would need to use the cargo airlock for the trick with the tranq gas, but it shouldn't slow us down too much."  Peter keeps half an eye on how Kshi is walking.</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="chatlog__message-group">
+        <div class="chatlog__author-avatar-container"> <img
+            class="chatlog__author-avatar"
+src="https://cdn.discordapp.com/avatars/924937596298207292/661a833f7de5557d4f458cf7e19e74e4.png?size=128"
+            alt="Avatar" loading="lazy"> </div>
+        <div class="chatlog__messages"> <span
+            class="chatlog__author-name" title="Haikol#0000"
+            data-user-id="924937596298207292" style="">Haikol</span> <span
+            class="chatlog__bot-tag">BOT</span> <span
+            class="chatlog__timestamp">28-Dec-21 02:58 AM</span>
+          <div class="chatlog__message "
+            data-message-id="925221254535974973"
+            id="message-925221254535974973" title="Message sent:
+            28-Dec-21 02:58 AM">
+            <div class="chatlog__content">
+              <div class="markdown"> <span class="preserve-whitespace"><em>Haikol comes close to the door and readies the shield, so in case things get gnarly he can do his own thing.</em></span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="chatlog__message-group">
+        <div class="chatlog__author-avatar-container"> <img
+            class="chatlog__author-avatar"
+src="https://cdn.discordapp.com/avatars/576344951319953418/cb25630f3694c6ba673e843fec22bd0c.png?size=128"
+            alt="Avatar" loading="lazy"> </div>
+        <div class="chatlog__messages"> <span
+            class="chatlog__author-name" title="GM#4115"
+            data-user-id="576344951319953418" style="color:
+            rgb(54,57,62)">●</span> <span class="chatlog__timestamp">28-Dec-21
+
+            03:00 AM</span>
+          <div class="chatlog__message "
+            data-message-id="925221728991473715"
+            id="message-925221728991473715" title="Message sent:
+            28-Dec-21 03:00 AM">
+            <div class="chatlog__content">
+              <div class="markdown"> <span class="preserve-whitespace"><div class="pre pre--multiline language-md">[Peter](✓=10)INT&lt;Leadership Eff=+2&gt;[CHAIN](+2)
+[Λxqelo](✓=14)&lt;Computer Eff=+6&gt;[CHAIN](+3)</div></span> <span
+                  class="chatlog__edited-timestamp" title="28-Dec-21
+                  03:02 AM">(edited)</span> </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="chatlog__message-group">
+        <div class="chatlog__author-avatar-container"> <img
+            class="chatlog__author-avatar"
+src="https://cdn.discordapp.com/avatars/576344951319953418/cb25630f3694c6ba673e843fec22bd0c.png?size=128"
+            alt="Avatar" loading="lazy"> </div>
+        <div class="chatlog__messages"> <span
+            class="chatlog__author-name" title="GM#4115"
+            data-user-id="576344951319953418" style="color:
+            rgb(54,57,62)">●</span> <span class="chatlog__timestamp">28-Dec-21
+
+            03:31 AM</span>
+          <div class="chatlog__message "
+            data-message-id="925229418090229780"
+            id="message-925229418090229780" title="Message sent:
+            28-Dec-21 03:31 AM">
+            <div class="chatlog__content">
+              <div class="markdown"> <span class="preserve-whitespace"><div class="pre pre--multiline language-md">[Kshi](✓=17)EDU+⛓️+2⛓️+3&lt;JoaT Computer Eff=StupidGood&gt;</div></span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="chatlog__message-group">
+        <div class="chatlog__author-avatar-container"> <img
+            class="chatlog__author-avatar"
+src="https://cdn.discordapp.com/avatars/924937596298207292/4a0359d3310fd86c5db90d70ca49f65b.png?size=128"
+            alt="Avatar" loading="lazy"> </div>
+        <div class="chatlog__messages"> <span
+            class="chatlog__author-name" title="Kshi-Voha
+            Banks'fiy'Hrakoea#0000" data-user-id="924937596298207292"
+            style="">Kshi-Voha Banks'fiy'Hrakoea</span> <span
+            class="chatlog__bot-tag">BOT</span> <span
+            class="chatlog__timestamp">28-Dec-21 03:34 AM</span>
+          <div class="chatlog__message "
+            data-message-id="925230250298851389"
+            id="message-925230250298851389" title="Message sent:
+            28-Dec-21 03:34 AM">
+            <div class="chatlog__content">
+              <div class="markdown"> <span class="preserve-whitespace">"Whoah."</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="chatlog__message-group">
+        <div class="chatlog__author-avatar-container"> <img
+            class="chatlog__author-avatar"
+src="https://cdn.discordapp.com/avatars/924937596298207292/0a568501ad821e44a0803dd706dcc41b.png?size=128"
+            alt="Avatar" loading="lazy"> </div>
+        <div class="chatlog__messages"> <span
+            class="chatlog__author-name" title="Margaret Blaine#0000"
+            data-user-id="924937596298207292" style="">Margaret Blaine</span>
+          <span class="chatlog__bot-tag">BOT</span> <span
+            class="chatlog__timestamp">28-Dec-21 03:36 AM</span>
+          <div class="chatlog__message "
+            data-message-id="925230738226438214"
+            id="message-925230738226438214" title="Message sent:
+            28-Dec-21 03:36 AM">
+            <div class="chatlog__content">
+              <div class="markdown"> <span class="preserve-whitespace">Over the comms, Margaret's normally calm and collected voice takes on a more barbarous tone, "We now have control over just about every system."</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="chatlog__message-group">
+        <div class="chatlog__author-avatar-container"> <img
+            class="chatlog__author-avatar"
+src="https://cdn.discordapp.com/avatars/576344951319953418/cb25630f3694c6ba673e843fec22bd0c.png?size=128"
+            alt="Avatar" loading="lazy"> </div>
+        <div class="chatlog__messages"> <span
+            class="chatlog__author-name" title="GM#4115"
+            data-user-id="576344951319953418" style="color:
+            rgb(54,57,62)">●</span> <span class="chatlog__timestamp">28-Dec-21
+
+            03:55 AM</span>
+          <div class="chatlog__message "
+            data-message-id="925235472614162462"
+            id="message-925235472614162462" title="Message sent:
+            28-Dec-21 03:55 AM">
+            <div class="chatlog__content">
+              <div class="markdown"> <span class="preserve-whitespace">From the other side of the ship can still be heard the intermittent bursts of laser fire.
+
+To everyone's surprise, the starboard airlock cycles efficiently and without fuss - given all it's safety features would otherwise have complained due to the conditions and flight.
+
+The outer doors open.</span> </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="chatlog__message-group">
+        <div class="chatlog__author-avatar-container"> <img
+            class="chatlog__author-avatar"
+src="https://cdn.discordapp.com/avatars/924937596298207292/5ab952300fa4ce35268c291747a0a833.png?size=128"
+            alt="Avatar" loading="lazy"> </div>
+        <div class="chatlog__messages"> <span
+            class="chatlog__author-name" title="Rox Goleb#0000"
+            data-user-id="924937596298207292" style="">Rox Goleb</span>
+          <span class="chatlog__bot-tag">BOT</span> <span
+            class="chatlog__timestamp">28-Dec-21 03:55 AM</span>
+          <div class="chatlog__message "
+            data-message-id="925235482235912212"
+            id="message-925235482235912212" title="Message sent:
+            28-Dec-21 03:55 AM">
+            <div class="chatlog__content">
+              <div class="markdown"> <span class="preserve-whitespace">The not often heard voice of Rox tests the bass of your comms pieces, "Please disable the port-side double beam turret."</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="chatlog__message-group">
+        <div class="chatlog__author-avatar-container"> <img
+            class="chatlog__author-avatar"
+src="https://cdn.discordapp.com/avatars/924937596298207292/4a0359d3310fd86c5db90d70ca49f65b.png?size=128"
+            alt="Avatar" loading="lazy"> </div>
+        <div class="chatlog__messages"> <span
+            class="chatlog__author-name" title="Kshi-Voha
+            Banks'fiy'Hrakoea#0000" data-user-id="924937596298207292"
+            style="">Kshi-Voha Banks'fiy'Hrakoea</span> <span
+            class="chatlog__bot-tag">BOT</span> <span
+            class="chatlog__timestamp">28-Dec-21 03:58 AM</span>
+          <div class="chatlog__message "
+            data-message-id="925236359055147058"
+            id="message-925236359055147058" title="Message sent:
+            28-Dec-21 03:58 AM">
+            <div class="chatlog__content">
+              <div class="markdown"> <span class="preserve-whitespace">"Marge, you see this? Those Imp boys at the impound really didn't do anything did they. They just turned it around, changed the paint-job and charged a premium to the Hierate company that bid for it."</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="chatlog__message-group">
+        <div class="chatlog__author-avatar-container"> <img
+            class="chatlog__author-avatar"
+src="https://cdn.discordapp.com/avatars/924937596298207292/661a833f7de5557d4f458cf7e19e74e4.png?size=128"
+            alt="Avatar" loading="lazy"> </div>
+        <div class="chatlog__messages"> <span
+            class="chatlog__author-name" title="Haikol#0000"
+            data-user-id="924937596298207292" style="">Haikol</span> <span
+            class="chatlog__bot-tag">BOT</span> <span
+            class="chatlog__timestamp">28-Dec-21 04:11 AM</span>
+          <div class="chatlog__message "
+            data-message-id="925239523644964884"
+            id="message-925239523644964884" title="Message sent:
+            28-Dec-21 04:11 AM">
+            <div class="chatlog__content">
+              <div class="markdown"> <span class="preserve-whitespace"><em>As soon as the door opens, Haikol slips in like the giant Ninja-Kitty he is. Taking his time with careful purchase of every step, every footfall. He's not a quick sneak, but he is a very patient sneak. Like a proper lion that is on the hunt. As soon as he is in, he gets close to the door and waits for the rest to come in!</em></span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="chatlog__message-group">
+        <div class="chatlog__author-avatar-container"> <img
+            class="chatlog__author-avatar"
+src="https://cdn.discordapp.com/avatars/924937596298207292/dd4c8d69a383b05dbadd341a5e14b224.png?size=128"
+            alt="Avatar" loading="lazy"> </div>
+        <div class="chatlog__messages"> <span
+            class="chatlog__author-name" title="Peter Percy#0000"
+            data-user-id="924937596298207292" style="">Peter Percy</span>
+          <span class="chatlog__bot-tag">BOT</span> <span
+            class="chatlog__timestamp">28-Dec-21 04:14 AM</span>
+          <div class="chatlog__message "
+            data-message-id="925240192233779230"
+            id="message-925240192233779230" title="Message sent:
+            28-Dec-21 04:14 AM">
+            <div class="chatlog__content">
+              <div class="markdown"> <span class="preserve-whitespace">Follows Haikol into the airlock and the over the radio "Λxqelo are we in a position to disable their internal comms and overide door access?"</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="chatlog__message-group">
+        <div class="chatlog__author-avatar-container"> <img
+            class="chatlog__author-avatar"
+src="https://cdn.discordapp.com/avatars/576344951319953418/cb25630f3694c6ba673e843fec22bd0c.png?size=128"
+            alt="Avatar" loading="lazy"> </div>
+        <div class="chatlog__messages"> <span
+            class="chatlog__author-name" title="GM#4115"
+            data-user-id="576344951319953418" style="color:
+            rgb(54,57,62)">●</span> <span class="chatlog__timestamp">28-Dec-21
+
+            04:16 AM</span>
+          <div class="chatlog__message "
+            data-message-id="925240838437634058"
+            id="message-925240838437634058" title="Message sent:
+            28-Dec-21 04:16 AM">
+            <div class="chatlog__content">
+              <div class="markdown"> <span class="preserve-whitespace">The 90 degree orientation shift often causes stomachs to do summersaults, as over the threshold of the outer airlock doors the graviton shielding negates the planet's gravity and employs the Cicendai's direction of 1G.</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="chatlog__message-group">
+        <div class="chatlog__author-avatar-container"> <img
+            class="chatlog__author-avatar"
+src="https://cdn.discordapp.com/avatars/924937596298207292/dd4c8d69a383b05dbadd341a5e14b224.png?size=128"
+            alt="Avatar" loading="lazy"> </div>
+        <div class="chatlog__messages"> <span
+            class="chatlog__author-name" title="Peter Percy#0000"
+            data-user-id="924937596298207292" style="">Peter Percy</span>
+          <span class="chatlog__bot-tag">BOT</span> <span
+            class="chatlog__timestamp">28-Dec-21 04:41 AM</span>
+          <div class="chatlog__message "
+            data-message-id="925247082216976454"
+            id="message-925247082216976454" title="Message sent:
+            28-Dec-21 04:41 AM">
+            <div class="chatlog__content">
+              <div class="markdown"> <span class="preserve-whitespace">Still on the radio "Λxqelo let me hear what they are saying, also prepare to start shutting there comms systems down. We shall start with anything from the cargo hold, and anything outbound from the ship." Pausing to digest the radio comms "I think we are good, they appear active but unaware of us. We do have an additional person waking up."</span>
+                <span class="chatlog__edited-timestamp" title="28-Dec-21
+                  07:36 AM">(edited)</span> </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="chatlog__message-group">
+        <div class="chatlog__author-avatar-container"> <img
+            class="chatlog__author-avatar"
+src="https://cdn.discordapp.com/avatars/204255221017214977/2fa57b425415134d4f8b279174131ad6.png?size=128"
+            alt="Avatar" loading="lazy"> </div>
+        <div class="chatlog__messages"> <span
+            class="chatlog__author-name" title="YAGPDB.xyz#8760"
+            data-user-id="204255221017214977" style="color:
+            rgb(47,49,54)">YAGPDB.xyz</span> <span
+            class="chatlog__bot-tag">BOT</span> <span
+            class="chatlog__timestamp">28-Dec-21 05:03 AM</span>
+          <div class="chatlog__message "
+            data-message-id="925252555175526480"
+            id="message-925252555175526480" title="Message sent:
+            28-Dec-21 05:03 AM">
+            <div class="chatlog__embed">
+              <div class="chatlog__embed-color-pill"
+                style="background-color: rgba(0,128,0,255)"></div>
+              <div class="chatlog__embed-content-container">
+                <div class="chatlog__embed-content">
+                  <div class="chatlog__embed-text">
+                    <div class="chatlog__embed-author"> <img
+                        class="chatlog__embed-author-icon"
+src="https://images-ext-1.discordapp.net/external/Qdrq4KeByMKdJbMeAOpUsJJ--aTGP8eu89MwlzDU7CM/https/cdn.discordapp.com/icons/910872207062892594/a77ca7a12593402e62857a77249d9268.png"
+                        alt="Author icon" loading="lazy"
+                        onerror="this.style.visibility='hidden'"> <span
+                        class="chatlog__embed-author-name"> POD Cross
+                        Channel RP </span> </div>
+                    <div class="chatlog__embed-title">
+                      <div class="markdown preserve-whitespace">Live Audio Logs</div>
+                    </div>
+                    <div class="chatlog__embed-description">
+                      <div class="markdown preserve-whitespace"><a href="https://discord.com/channels/910872207062892594/910873085836669008/925252174970249226" onclick="scrollToMessage(event, '925252174970249226')">Referenced in...</a></div>
+                    </div>
+                  </div>
+                  <div class="chatlog__embed-thumbnail-container"> <a
+                      class="chatlog__embed-thumbnail-link"
+href="https://images-ext-1.discordapp.net/external/Qdrq4KeByMKdJbMeAOpUsJJ--aTGP8eu89MwlzDU7CM/https/cdn.discordapp.com/icons/910872207062892594/a77ca7a12593402e62857a77249d9268.png">
+                      <img class="chatlog__embed-thumbnail"
+src="https://images-ext-1.discordapp.net/external/Qdrq4KeByMKdJbMeAOpUsJJ--aTGP8eu89MwlzDU7CM/https/cdn.discordapp.com/icons/910872207062892594/a77ca7a12593402e62857a77249d9268.png"
+                        alt="Thumbnail" loading="lazy"> </a> </div>
+                </div>
+                <div class="chatlog__embed-image-container"> <a
+                    class="chatlog__embed-image-link"
+href="https://images-ext-1.discordapp.net/external/lizrP5SliXAbHXfmXuAIIXhDXcs9XjqGTTQMvE2TfNw/https/images.hive.blog/DQmaNXvUeuqF1uS6cMhei7euAvB1xqA5fe3iEedg4Y5vLvz/hive%2520dividers-05.png">
+                    <img class="chatlog__embed-image"
+src="https://images-ext-1.discordapp.net/external/lizrP5SliXAbHXfmXuAIIXhDXcs9XjqGTTQMvE2TfNw/https/images.hive.blog/DQmaNXvUeuqF1uS6cMhei7euAvB1xqA5fe3iEedg4Y5vLvz/hive%2520dividers-05.png"
+                      alt="Image" loading="lazy"> </a> </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="chatlog__message-group">
+        <div class="chatlog__author-avatar-container"> <img
+            class="chatlog__author-avatar"
+src="https://cdn.discordapp.com/avatars/924937596298207292/04f70f833ff4ce0e3eb2b227ad6fe194.png?size=128"
+            alt="Avatar" loading="lazy"> </div>
+        <div class="chatlog__messages"> <span
+            class="chatlog__author-name" title="Varus Sadratis#0000"
+            data-user-id="924937596298207292" style="">Varus Sadratis</span>
+          <span class="chatlog__bot-tag">BOT</span> <span
+            class="chatlog__timestamp">28-Dec-21 06:46 AM</span>
+          <div class="chatlog__message "
+            data-message-id="925278619310391306"
+            id="message-925278619310391306" title="Message sent:
+            28-Dec-21 06:46 AM">
+            <div class="chatlog__content">
+              <div class="markdown"> <span class="preserve-whitespace">Places a hand on Kshi shoulder. "I prefer the cargo bay airlock. Narrow cooridors are death traps for fireteams. However, whichever door meetss our criteria better is the airlock we'll use. One, the Interior door has to be prevented from closing remotely and difficult to close on sight. Two the exterior door to be forced open regardless to the state of the interior door. As insuring our ability to extract is more important than tactical desire."</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="chatlog__message-group">
+        <div class="chatlog__author-avatar-container"> <img
+            class="chatlog__author-avatar"
+src="https://cdn.discordapp.com/avatars/924937596298207292/04f70f833ff4ce0e3eb2b227ad6fe194.png?size=128"
+            alt="Avatar" loading="lazy"> </div>
+        <div class="chatlog__messages"> <span
+            class="chatlog__author-name" title="Varus Sadratis#0000"
+            data-user-id="924937596298207292" style="">Varus Sadratis</span>
+          <span class="chatlog__bot-tag">BOT</span> <span
+            class="chatlog__timestamp">28-Dec-21 08:16 AM</span>
+          <div class="chatlog__message "
+            data-message-id="925301186054193203"
+            id="message-925301186054193203" title="Message sent:
+            28-Dec-21 08:16 AM">
+            <div class="chatlog__content">
+              <div class="markdown"> <span class="preserve-whitespace">With them inside the cargo bay vestabule, he readies two tranq grenades and keeps the trigger depressed. "Alright, Kshi, thank for getting us in. If possible, keep the pressure inisde the airlock while cycling the interior door that Haikol is facing. We'll want to wide firm stance leaning back, as the atmo is gonna kick forward to equalized. And tell me when the door is about to cycle, as that when I will start to release the tranqs gas. Haikol ready the shield and assume you will be struck."</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="chatlog__message-group">
+        <div class="chatlog__author-avatar-container"> <img
+            class="chatlog__author-avatar"
+src="https://cdn.discordapp.com/avatars/924937596298207292/dd4c8d69a383b05dbadd341a5e14b224.png?size=128"
+            alt="Avatar" loading="lazy"> </div>
+        <div class="chatlog__messages"> <span
+            class="chatlog__author-name" title="Peter Percy#0000"
+            data-user-id="924937596298207292" style="">Peter Percy</span>
+          <span class="chatlog__bot-tag">BOT</span> <span
+            class="chatlog__timestamp">28-Dec-21 08:31 AM</span>
+          <div class="chatlog__message "
+            data-message-id="925304989776216094"
+            id="message-925304989776216094" title="Message sent:
+            28-Dec-21 08:31 AM">
+            <div class="chatlog__content">
+              <div class="markdown"> <span class="preserve-whitespace">Peter coordinates with Λxqelo to cut comms from the Cargo hold the moment they open the door "3, 2, 1"</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="chatlog__message-group">
+      <div class="chatlog__author-avatar-container"> <img
+          class="chatlog__author-avatar"
+src="https://cdn.discordapp.com/avatars/576344951319953418/cb25630f3694c6ba673e843fec22bd0c.png?size=128"
+          alt="Avatar" loading="lazy"> </div>
+      <div class="chatlog__messages"> <span
+          class="chatlog__author-name" title="GM#4115"
+          data-user-id="576344951319953418" style="color: rgb(54,57,62)">●</span>
+        <span class="chatlog__timestamp">28-Dec-21 11:18 PM</span>
+        <div class="chatlog__message "
+          data-message-id="925528286828851210"
+          id="message-925528286828851210" title="Message sent: 28-Dec-21
+          11:18 PM">
+          <div class="chatlog__content">
+            <div class="markdown"> <span class="preserve-whitespace"><div class="pre pre--multiline language-md">[Peter](✓=12)INT&lt;Tactics Eff=+4&gt;&gt;&gt;grants +4 INIT
+[Peter](✓=10)INT&lt;Leadership Eff=+2&gt;&gt;&gt;grants 2x +1 INIT
+
+ORDER
+1:[Peter](8&gt;13)DEX⛓+4&lt;INIT Eff=+5&gt;
+2:[Haikol](8&gt;12)⛓+4&lt;INIT Eff=+4&gt;
+3:[Kshi](8&gt;11)DEX⛓+4&lt;INIT Eff=+3&gt;
+3:[Varus](8&gt;11)DEX+1⛓+4&lt;INIT Eff=+3&gt;</div>
+
+The plan is set - a near comically relaxed, almost jocular attitude pervades the sneaky crew on both vessels due to the successes over the last hour or so. <em>Could this be hubris?</em>
+
+Margaret, Λqelo and Aryn prepare to disable comms just between the cargo bay and the bridge to avoid suspicion. The doctor waits pensively to see the effect of his fentanyl modifications. Rox fumes quietly at the ongoing injustice of innocent creatures &lt;MOR -1&gt; and Carter waits pensively.</span>
+            </div>
+          </div>
+        </div>
+        <div class="chatlog__message "
+          data-message-id="925528319670222900"
+          id="message-925528319670222900" title="Message sent: 28-Dec-21
+          11:19 PM">
+          <div class="chatlog__attachment " onclick=""> <video
+              class="chatlog__attachment-media" controls="controls"> <source
+src="https://cdn.discordapp.com/attachments/922970727307690035/925528319137574932/Disco_6.mp4"
+                alt="Video attachment" title="Video: Disco_6.mp4 (4.5
+                MB)"> </video> </div>
+        </div>
+        <div class="chatlog__message "
+          data-message-id="925528330860630057"
+          id="message-925528330860630057" title="Message sent: 28-Dec-21
+          11:19 PM">
+          <div class="chatlog__content">
+            <div class="markdown"> <span class="preserve-whitespace">Varus pulls the pins as Peter's count finishes, time slows, Haikol's strength allowing the others to brace for the coming shock-front behind the boarding shield, Kshi at the rear ready with his Grav Belt to compensate for the coming forces and maintain a "surfing" trajectory into the middle of the cargo bay on his modified shield.
+"Poor guy doesn't stand a chance," he whispers out loud, as he taps the overridden inner airlock release.
+
+A burst of high pressure, low temperature methane and ammonia sends a shockwave and flurry of instantly crystallised snow into the surprisingly empty cargo-bay.
+
+The internal snow-storm throws the excercising marine back 5 meters almost straight into the port-side cargobay door as the tranq grenades barely miss him and bounce back after having left a couple of dents in the bulkheads.
+
+The colourless tranquilizer fills the space quickly - though dissipation would occur in approximately 1 minute. The marine - a sizeable fellow, no mask, but in combat gear slides along the floor supine - nearly but not quite knocked out &lt;END DAM 1&gt;
+
+As the boarding crew is shunted forward into the internal snow-storm and snap-mist, the marine's silhouette can be seen attempting to contact the bridge and reaching for an emergency mask next to the portside cargo-bay doors.</span>
+              <span class="chatlog__edited-timestamp" title="28-Dec-21
+                11:25 PM">(edited)</span> </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="chatlog__message-group">
+      <div class="chatlog__author-avatar-container"> <img
+          class="chatlog__author-avatar"
+src="https://cdn.discordapp.com/avatars/924937596298207292/dd4c8d69a383b05dbadd341a5e14b224.png?size=128"
+          alt="Avatar" loading="lazy"> </div>
+      <div class="chatlog__messages"> <span
+          class="chatlog__author-name" title="Peter Percy#0000"
+          data-user-id="924937596298207292" style="">Peter Percy</span>
+        <span class="chatlog__bot-tag">BOT</span> <span
+          class="chatlog__timestamp">28-Dec-21 11:30 PM</span>
+        <div class="chatlog__message "
+          data-message-id="925531154071818270"
+          id="message-925531154071818270" title="Message sent: 28-Dec-21
+          11:30 PM">
+          <div class="chatlog__content">
+            <div class="markdown"> <span class="preserve-whitespace">The adrenaline rushing through his system Peter issues a stream of 'helpful' hints "Aryn is anyone moviving or responf=ding to this, and whats going on the comms, Oh yeah I shoudl sedate the guy, maybe put roll him over so he isn't going to choke, we need to get t the bridge too."</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="chatlog__message-group">
+      <div class="chatlog__author-avatar-container"> <img
+          class="chatlog__author-avatar"
+src="https://cdn.discordapp.com/avatars/924937596298207292/04f70f833ff4ce0e3eb2b227ad6fe194.png?size=128"
+          alt="Avatar" loading="lazy"> </div>
+      <div class="chatlog__messages"> <span
+          class="chatlog__author-name" title="Varus Sadratis#0000"
+          data-user-id="924937596298207292" style="">Varus Sadratis</span>
+        <span class="chatlog__bot-tag">BOT</span> <span
+          class="chatlog__timestamp">29-Dec-21 01:39 AM</span>
+        <div class="chatlog__message "
+          data-message-id="925563536833396786"
+          id="message-925563536833396786" title="Message sent: 29-Dec-21
+          01:39 AM">
+          <div class="chatlog__content">
+            <div class="markdown"> <span class="preserve-whitespace">Varus taps Haikol shoulder. "Move the bridge door. Peter secure the marine, then follow Haikol, toss tranq over his shoulder into the bridge. Kshi, first priroity is to prevent the interior airlock door from closing. Second priority is to make the exterior door openable regardless to the interior. I have the gunner and engineer."
+With that, and with a surprising amount of speed Varus darts cargo hold to the gunner door, as he draws his stunner pistol. 
+<div class="pre pre--multiline nohighlight">Minor Action: Draw Stunner.
+Minor Action: Move 6 Meter +3 from cyber enhancement for a total of 9 meters.
+Minor Action: move 6 Meter +3 from cyber enhancement for a total of 9 meters.</div></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="chatlog__message-group">
+      <div class="chatlog__author-avatar-container"> <img
+          class="chatlog__author-avatar"
+src="https://cdn.discordapp.com/avatars/924937596298207292/dd4c8d69a383b05dbadd341a5e14b224.png?size=128"
+          alt="Avatar" loading="lazy"> </div>
+      <div class="chatlog__messages"> <span
+          class="chatlog__author-name" title="Peter Percy#0000"
+          data-user-id="924937596298207292" style="">Peter Percy</span>
+        <span class="chatlog__bot-tag">BOT</span> <span
+          class="chatlog__timestamp">29-Dec-21 02:30 AM</span>
+        <div class="chatlog__message "
+          data-message-id="925576602312658974"
+          id="message-925576602312658974" title="Message sent: 29-Dec-21
+          02:30 AM">
+          <div class="chatlog__content">
+            <div class="markdown"> <span class="preserve-whitespace">Static blade drawn Peter approaches the prone Marine to check that he is unconcious.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="chatlog__message-group">
+      <div class="chatlog__author-avatar-container"> <img
+          class="chatlog__author-avatar"
+src="https://cdn.discordapp.com/avatars/924937596298207292/dd4c8d69a383b05dbadd341a5e14b224.png?size=128"
+          alt="Avatar" loading="lazy"> </div>
+      <div class="chatlog__messages"> <span
+          class="chatlog__author-name" title="Peter Percy#0000"
+          data-user-id="924937596298207292" style="">Peter Percy</span>
+        <span class="chatlog__bot-tag">BOT</span> <span
+          class="chatlog__timestamp">29-Dec-21 02:47 AM</span>
+        <div class="chatlog__message "
+          data-message-id="925580843517354015"
+          id="message-925580843517354015" title="Message sent: 29-Dec-21
+          02:47 AM">
+          <div class="chatlog__content">
+            <div class="markdown"> <span class="preserve-whitespace">Rembering to give Varus a heads up "Watch out near the passenger airlock, you may have company."</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="chatlog__message-group">
+      <div class="chatlog__author-avatar-container"> <img
+          class="chatlog__author-avatar"
+src="https://cdn.discordapp.com/avatars/924937596298207292/661a833f7de5557d4f458cf7e19e74e4.png?size=128"
+          alt="Avatar" loading="lazy"> </div>
+      <div class="chatlog__messages"> <span
+          class="chatlog__author-name" title="Haikol#0000"
+          data-user-id="924937596298207292" style="">Haikol</span> <span
+          class="chatlog__bot-tag">BOT</span> <span
+          class="chatlog__timestamp">29-Dec-21 05:19 AM</span>
+        <div class="chatlog__message "
+          data-message-id="925619055971414056"
+          id="message-925619055971414056" title="Message sent: 29-Dec-21
+          05:19 AM">
+          <div class="chatlog__content">
+            <div class="markdown"> <span class="preserve-whitespace"><em>Haikol can see the silhouette of the Marine going for the Mask. Haikol will do as instructed and head for the bridge as quietly as he can.</em></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="chatlog__message-group">
+      <div class="chatlog__author-avatar-container"> <img
+          class="chatlog__author-avatar"
+src="https://cdn.discordapp.com/avatars/576344951319953418/cb25630f3694c6ba673e843fec22bd0c.png?size=128"
+          alt="Avatar" loading="lazy"> </div>
+      <div class="chatlog__messages"> <span
+          class="chatlog__author-name" title="GM#4115"
+          data-user-id="576344951319953418" style="color: rgb(54,57,62)">●</span>
+        <span class="chatlog__timestamp">29-Dec-21 05:41 AM</span>
+        <div class="chatlog__message "
+          data-message-id="925624513310388254"
+          id="message-925624513310388254" title="Message sent: 29-Dec-21
+          05:41 AM">
+          <div class="chatlog__content">
+            <div class="markdown"> <span class="preserve-whitespace">The party splits three ways.
+<div class="pre pre--multiline language-md">[Peter](❌=7)INT&lt;Untrained Recon Eff=-3&gt;</div>
+Due to the low visiblity and speed with which these events have happened, the clear visual of the Marine resolves in the mist as Peter approaches. In the six seconds that have elapsed, Peter may be relieved to find that though the Iltharan male struggled to don an emergency oxygen mask - and had taken his sidearm out - he had been overcome by the tranquiliser at the very last second. The Marine's finger relaxes off the second pressure point of the trigger and his grip losens.
+<div class="pre pre--multiline language-md">[Aryn](✓=9)⛓-1&lt;Sensors Eff=+1&gt;</div>
+Meanwhile, Aryn <em>does</em> notice one of the NAS tags decending a lift on the portside, very close to where Varus has just passed, but at least two doors (compartments) away from him as the swift Vespexer's hacked ID opens the Iris for the turret.
+
+The gunner still laughing maniacally firing at the Jelly Orbs even as a female voice over the intercom, with a strong Trokh accent, orders him to stand down and power down the lasers.
+
+Aryn would also notice the NAS tag that was at the Jump Drive in the upper deck has descended the ladder back down to the M-Drive and is making a definite, rather quick move towards the cargo bay.
+
+And finally, another NAS tag on the upper deck has moved towards the interfloor iris on the starboard side near Haikol's route - but hasn't as yet, opened it.</span>
+              <span class="chatlog__edited-timestamp" title="29-Dec-21
+                05:46 AM">(edited)</span> </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="chatlog__message-group">
+      <div class="chatlog__author-avatar-container"> <img
+          class="chatlog__author-avatar"
+src="https://cdn.discordapp.com/avatars/924937596298207292/dd4c8d69a383b05dbadd341a5e14b224.png?size=128"
+          alt="Avatar" loading="lazy"> </div>
+      <div class="chatlog__messages"> <span
+          class="chatlog__author-name" title="Peter Percy#0000"
+          data-user-id="924937596298207292" style="">Peter Percy</span>
+        <span class="chatlog__bot-tag">BOT</span> <span
+          class="chatlog__timestamp">29-Dec-21 05:46 AM</span>
+        <div class="chatlog__message "
+          data-message-id="925625881702064180"
+          id="message-925625881702064180" title="Message sent: 29-Dec-21
+          05:46 AM">
+          <div class="chatlog__content">
+            <div class="markdown"> <span class="preserve-whitespace">Peter expertly injects the marine with a heavy duty sedative, and then rolls him into a position where he won't choke. giving him a quick once over for critical injuries.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="chatlog__message-group">
+      <div class="chatlog__author-avatar-container"> <img
+          class="chatlog__author-avatar"
+src="https://cdn.discordapp.com/avatars/576344951319953418/cb25630f3694c6ba673e843fec22bd0c.png?size=128"
+          alt="Avatar" loading="lazy"> </div>
+      <div class="chatlog__messages"> <span
+          class="chatlog__author-name" title="GM#4115"
+          data-user-id="576344951319953418" style="color: rgb(54,57,62)">●</span>
+        <span class="chatlog__timestamp">29-Dec-21 05:49 AM</span>
+        <div class="chatlog__message "
+          data-message-id="925626515541082132"
+          id="message-925626515541082132" title="Message sent: 29-Dec-21
+          05:49 AM">
+          <div class="chatlog__content">
+            <div class="markdown"> <span class="preserve-whitespace">The Marine looks to be in good enough health with bruising, cuts and minor skin damage from the sudden temperature change, overpressure and ammonia.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="chatlog__message-group">
+      <div class="chatlog__author-avatar-container"> <img
+          class="chatlog__author-avatar"
+src="https://cdn.discordapp.com/avatars/924937596298207292/dd4c8d69a383b05dbadd341a5e14b224.png?size=128"
+          alt="Avatar" loading="lazy"> </div>
+      <div class="chatlog__messages"> <span
+          class="chatlog__author-name" title="Peter Percy#0000"
+          data-user-id="924937596298207292" style="">Peter Percy</span>
+        <span class="chatlog__bot-tag">BOT</span> <span
+          class="chatlog__timestamp">29-Dec-21 06:00 AM</span>
+        <div class="chatlog__message "
+          data-message-id="925629252534145044"
+          id="message-925629252534145044" title="Message sent: 29-Dec-21
+          06:00 AM">
+          <div class="chatlog__content">
+            <div class="markdown"> <span class="preserve-whitespace">"Λxqelo time to drop thier internal comms now."</span>
+              <span class="chatlog__edited-timestamp" title="29-Dec-21
+                06:00 AM">(edited)</span> </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="chatlog__message-group">
+      <div class="chatlog__author-avatar-container"> <img
+          class="chatlog__author-avatar"
+src="https://cdn.discordapp.com/avatars/924937596298207292/04f70f833ff4ce0e3eb2b227ad6fe194.png?size=128"
+          alt="Avatar" loading="lazy"> </div>
+      <div class="chatlog__messages"> <span
+          class="chatlog__author-name" title="Varus Sadratis#0000"
+          data-user-id="924937596298207292" style="">Varus Sadratis</span>
+        <span class="chatlog__bot-tag">BOT</span> <span
+          class="chatlog__timestamp">29-Dec-21 06:25 AM</span>
+        <div class="chatlog__message "
+          data-message-id="925635718099910686"
+          id="message-925635718099910686" title="Message sent: 29-Dec-21
+          06:25 AM">
+          <div class="chatlog__content">
+            <div class="markdown"> <span class="preserve-whitespace">Thunk Thunk Thunk. As Varus vacc suit boots clack along the ships hull. Iris one. Swing through the common area. Iris opens. Along the top, in stencil lettering. 'Portside Gunnery'. He grips the stunner. Then he can see the NAS blip appear on his head inside the connecting shaft. Someone was coming down. Deal with them afterward.
+
+He than takes a central axis relock stance wit the stunner, holding it close to his chest. Varus moves toward the iris, it slides open.  He tilts his entire body, take aim, slides the safety off and takes fire at the hopefully unaware animal cruel gunner.</span>
+              <span class="chatlog__edited-timestamp" title="29-Dec-21
+                06:30 AM">(edited)</span> </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="chatlog__message-group">
+      <div class="chatlog__author-avatar-container"> <img
+          class="chatlog__author-avatar"
+src="https://cdn.discordapp.com/avatars/215574697151037441/710a34fde295c80068c0337315fbfe12.png?size=128"
+          alt="Avatar" loading="lazy"> </div>
+      <div class="chatlog__messages"> <span
+          class="chatlog__author-name" title="AgentWigggles#6108"
+          data-user-id="215574697151037441" style="color:
+          rgb(127,0,255)">AgentWigggles</span> <span
+          class="chatlog__timestamp">29-Dec-21 06:26 AM</span>
+        <div class="chatlog__message "
+          data-message-id="925635804133474334"
+          id="message-925635804133474334" title="Message sent: 29-Dec-21
+          06:26 AM">
+          <div class="chatlog__content">
+            <div class="markdown"> <span class="preserve-whitespace"><div class="pre pre--multiline nohighlight">Minor Action: Aim
+Sig. Action: Fire at the gunner</div></span> </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="chatlog__message-group">
+      <div class="chatlog__author-avatar-container"> <img
+          class="chatlog__author-avatar"
+src="https://cdn.discordapp.com/avatars/576344951319953418/cb25630f3694c6ba673e843fec22bd0c.png?size=128"
+          alt="Avatar" loading="lazy"> </div>
+      <div class="chatlog__messages"> <span
+          class="chatlog__author-name" title="GM#4115"
+          data-user-id="576344951319953418" style="color: rgb(54,57,62)">●</span>
+        <span class="chatlog__timestamp">29-Dec-21 06:50 AM</span>
+        <div class="chatlog__message "
+          data-message-id="925642012676456528"
+          id="message-925642012676456528" title="Message sent: 29-Dec-21
+          06:50 AM">
+          <div class="chatlog__content">
+            <div class="markdown"> <span class="preserve-whitespace"><div class="pre pre--multiline language-md">[Varus](✓=10)+4&lt;short range aim stunner eff=+4&gt;
+[DAM](14&gt;7)SEVERE</div>
+The internal comms between the Cicendai crew are severed at just the right time, as flashes radiate down the corridor from the turret compartment in conjunction with a short sharp scream.
+
+The intervening irises close, just as the lift (elevator) door opens up to reveal an irate looking Bwap muttering to itself about pharmaceutical prices. It takes a left and is about to open the iris to the portside airlock.</span>
+              <span class="chatlog__edited-timestamp" title="30-Dec-21
+                07:43 AM">(edited)</span> </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="chatlog__message-group">
+      <div class="chatlog__author-avatar-container"> <img
+          class="chatlog__author-avatar"
+src="https://cdn.discordapp.com/avatars/576344951319953418/cb25630f3694c6ba673e843fec22bd0c.png?size=128"
+          alt="Avatar" loading="lazy"> </div>
+      <div class="chatlog__messages"> <span
+          class="chatlog__author-name" title="GM#4115"
+          data-user-id="576344951319953418" style="color: rgb(54,57,62)">●</span>
+        <span class="chatlog__timestamp">29-Dec-21 09:28 PM</span>
+        <div class="chatlog__message "
+          data-message-id="925862791657713764"
+          id="message-925862791657713764" title="Message sent: 29-Dec-21
+          09:28 PM">
+          <div class="chatlog__content">
+            <div class="markdown"> <span class="preserve-whitespace">Meanwhile, just on the other side of the portside closed inner airlock door the sudden shift from clear air to the noxious ammonia, methane, water condensed mists of the empty cargo bay - the silhouette of Peter kneeling over the unconscious form of the Iltharan marine.
+
+On the rear starboard-side of the empty cargo bay, a panel comes loose and drops on the floor with a clang - the sound of sniffing, wretching and a delicate voice calling out, "Gaaj'lords! What has happened! My dear! Arthil, are you okay Arthil?!"
+
+On the other side of the open starboard airlock, Kshi tapping into deeper systems, and pushing through the corridor forward at the Command Deck the Aslan hulk, shield infront followed by the churning red mists. The iris closes behind him. A formiddable sight, bound to terrify at first sight - an almost preturnatural silence to his steps given the untoppable boulder charging down the corridor.
+
+<div class="pre pre--multiline language-md">[Haikol](✓=9)Aslan Hearing 1 ⛓+1&lt;Recon Eff=+1&gt;</div>
+A sound. The slightest, whir, a shift - Haikol recognises the Command Deck iris ahead about to open. Intercom Live Recording voices mentioning not being able to talk to someone called Djaa.
+
+He knows the captain's stateroom to his left, or the starboard turret gangway would suffice for a silent slip into the shadows not to alert the bridge crew, should one of them leave the command deck and isolate themselves in the corridor.
+<div class="pre pre--multiline language-md">[Haikol](✓=12)STR⛓+1&lt;Stealth Eff=+4&gt;</div></span>
+              <span class="chatlog__edited-timestamp" title="29-Dec-21
+                09:32 PM">(edited)</span> </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="chatlog__message-group">
+      <div class="chatlog__author-avatar-container"> <img
+          class="chatlog__author-avatar"
+src="https://cdn.discordapp.com/avatars/576344951319953418/cb25630f3694c6ba673e843fec22bd0c.png?size=128"
+          alt="Avatar" loading="lazy"> </div>
+      <div class="chatlog__messages"> <span
+          class="chatlog__author-name" title="GM#4115"
+          data-user-id="576344951319953418" style="color: rgb(54,57,62)">●</span>
+        <span class="chatlog__timestamp">31-Dec-21 01:20 AM</span>
+        <div class="chatlog__message "
+          data-message-id="926283743172382751"
+          id="message-926283743172382751" title="Message sent: 31-Dec-21
+          01:20 AM">
+          <div class="chatlog__content">
+            <div class="markdown"> <span class="preserve-whitespace">Unbeknownst to his compatriots - Kshi had switched one of his personal audio channels to an up-beat musical piece with an assertive female singer and danceable rythm.
+
+It crescendos with a playful triple beat and sharp stop, just as the command deck's iris blooms and Haikol's shield bursts into a myriad of psychedelic colours - all perceived only from the hallucinogenic properties of such a high dose so instantly atomised in the faces of the Cicendai's bridge crew.
+
+Haikol storms through like a mammoth wedge plow, meeting little resistance from the stunned Aslan female almost his own height. A human male &lt;Tyrax&gt; braces against his console on the left with a yelp, turning away from the burst through sheer dumb luck.
+
+The billowing secondary condensations from the actually colourless tranquilliser drug steam rolls over the two other humans, a male and female at the forward consoles.
+
+The pressure change causes some of the multicoloured, luminescent holo-pigments to splash away from their choreographed stage and in turn scatter back down the corridor...</span>
+              <span class="chatlog__edited-timestamp" title="31-Dec-21
+                01:49 AM">(edited)</span> </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="chatlog__message-group">
+      <div class="chatlog__author-avatar-container"> <img
+          class="chatlog__author-avatar"
+src="https://cdn.discordapp.com/avatars/924937596298207292/4a0359d3310fd86c5db90d70ca49f65b.png?size=128"
+          alt="Avatar" loading="lazy"> </div>
+      <div class="chatlog__messages"> <span
+          class="chatlog__author-name" title="Kshi-Voha
+          Banks'fiy'Hrakoea#0000" data-user-id="924937596298207292"
+          style="">Kshi-Voha Banks'fiy'Hrakoea</span> <span
+          class="chatlog__bot-tag">BOT</span> <span
+          class="chatlog__timestamp">31-Dec-21 01:20 AM</span>
+        <div class="chatlog__message "
+          data-message-id="926283756682227752"
+          id="message-926283756682227752" title="Message sent: 31-Dec-21
+          01:20 AM">
+          <div class="chatlog__content">
+            <div class="markdown"> <span class="preserve-whitespace">Meanwhile, Kshi is about to step into the passenger airlock in an attempt to ready a tranquilliser for the potential opening of the interdeck iris above and to the left.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="chatlog__message-group">
+      <div class="chatlog__author-avatar-container"> <img
+          class="chatlog__author-avatar"
+src="https://cdn.discordapp.com/avatars/576344951319953418/cb25630f3694c6ba673e843fec22bd0c.png?size=128"
+          alt="Avatar" loading="lazy"> </div>
+      <div class="chatlog__messages"> <span
+          class="chatlog__author-name" title="GM#4115"
+          data-user-id="576344951319953418" style="color: rgb(54,57,62)">●</span>
+        <span class="chatlog__timestamp">31-Dec-21 01:20 AM</span>
+        <div class="chatlog__message "
+          data-message-id="926283767130259507"
+          id="message-926283767130259507" title="Message sent: 31-Dec-21
+          01:20 AM">
+          <div class="chatlog__content">
+            <div class="markdown"> <span class="preserve-whitespace">Tracing back through the ship &lt;for the third round&gt; The rasping, choking voice at the starboard rear of the empty cargo bay disappears.
+
+Peter's silhouette makes a dash across the mists...
+
+The port-side airlock's forward iris <img loading="lazy" class="emoji " alt="😵" title="dizzy_face" src="https://twemoji.maxcdn.com/2/svg/1f635.svg">‍<img loading="lazy" class="emoji " alt="💫" title="dizzy" src="https://twemoji.maxcdn.com/2/svg/1f4ab.svg">  opens, as the Bwap falls silent, stopped in his tracks by his sensitiveness to the odd noxious fume coming through the inner airlock door. Unaware of the appraching Vespexer, he focusses in on the inner airlock door about to open it.</span>
+              <span class="chatlog__edited-timestamp" title="31-Dec-21
+                01:50 AM">(edited)</span> </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="chatlog__message-group">
+      <div class="chatlog__author-avatar-container"> <img
+          class="chatlog__author-avatar"
+src="https://cdn.discordapp.com/avatars/924937596298207292/dd4c8d69a383b05dbadd341a5e14b224.png?size=128"
+          alt="Avatar" loading="lazy"> </div>
+      <div class="chatlog__messages"> <span
+          class="chatlog__author-name" title="Peter Percy#0000"
+          data-user-id="924937596298207292" style="">Peter Percy</span>
+        <span class="chatlog__bot-tag">BOT</span> <span
+          class="chatlog__timestamp">31-Dec-21 01:29 AM</span>
+        <div class="chatlog__message "
+          data-message-id="926285920515276851"
+          id="message-926285920515276851" title="Message sent: 31-Dec-21
+          01:29 AM">
+          <div class="chatlog__content">
+            <div class="markdown"> <span class="preserve-whitespace">Pulling himself together Peter strides towards Haikol at a steady but unhurried pace. Addressing the team one at a time 
+"Kshi can you do Haikol and I a solid and drop a tranq grenade in the passenger airlock.”
+ “Haikol I'm coming will be 10 seconds.”
+“Varus the engineer has made his way to the cargo hold be on guard” .
+“Λxqelo can you try and lock big red in the fresher on the upper deck”.
+“Aryn well done with the scans” 
+“Margaret can you put that brain of yours to work and guess why the cargo hold is empty." 
+By this time Peter enters the passenger airlock his has prepared to make a prime parry on the inside line against whatever his hopefully surprised adversary in the airlock attempts.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="chatlog__message-group">
+      <div class="chatlog__author-avatar-container"> <img
+          class="chatlog__author-avatar"
+src="https://cdn.discordapp.com/avatars/576344951319953418/cb25630f3694c6ba673e843fec22bd0c.png?size=128"
+          alt="Avatar" loading="lazy"> </div>
+      <div class="chatlog__messages"> <span
+          class="chatlog__author-name" title="GM#4115"
+          data-user-id="576344951319953418" style="color: rgb(54,57,62)">●</span>
+        <span class="chatlog__timestamp">31-Dec-21 01:42 AM</span>
+        <div class="chatlog__message "
+          data-message-id="926289209856253982"
+          id="message-926289209856253982" title="Message sent: 31-Dec-21
+          01:42 AM">
+          <div class="chatlog__content">
+            <div class="markdown"> <span class="preserve-whitespace">Λxqelo will have easily accessed certain door controls, locking the upper deck NAS signal into the fresher pod - possibly sending the fresher's temperature setting haywire in addition. It's not certain what the compulsion would be for a Hiver to do so. Perhaps it's a manipulation.</span>
+              <span class="chatlog__edited-timestamp" title="31-Dec-21
+                01:45 AM">(edited)</span> </div>
+          </div>
+        </div>
+        <div class="chatlog__message "
+          data-message-id="926289732621725746"
+          id="message-926289732621725746" title="Message sent: 31-Dec-21
+          01:44 AM">
+          <div class="chatlog__content">
+            <div class="markdown"> <span class="preserve-whitespace">Back on the Sunspear, Margaret is entirely glassy eyed. Lost in a trance. The automaton - not currently in the eyeline of any of the hostile boarders.</span>
+              <span class="chatlog__edited-timestamp" title="31-Dec-21
+                01:44 AM">(edited)</span> </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="chatlog__message-group">
+      <div class="chatlog__author-avatar-container"> <img
+          class="chatlog__author-avatar"
+src="https://cdn.discordapp.com/avatars/576344951319953418/cb25630f3694c6ba673e843fec22bd0c.png?size=128"
+          alt="Avatar" loading="lazy"> </div>
+      <div class="chatlog__messages"> <span
+          class="chatlog__author-name" title="GM#4115"
+          data-user-id="576344951319953418" style="color: rgb(54,57,62)">●</span>
+        <span class="chatlog__timestamp">31-Dec-21 02:02 AM</span>
+        <div class="chatlog__message "
+          data-message-id="926294170467987517"
+          id="message-926294170467987517" title="Message sent: 31-Dec-21
+          02:02 AM">
+          <div class="chatlog__content">
+            <div class="markdown"> <span class="preserve-whitespace"><div class="pre pre--multiline language-md">[Varus](✓=9)DEX&lt;short range energy gun eff=+1&gt;
+[DAM](=9)&lt;Stun&gt; &gt;&gt;&gt; Still Conscious</div></span> <span
+                class="chatlog__edited-timestamp" title="31-Dec-21 02:33
+                AM">(edited)</span> </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="chatlog__message-group">
+      <div class="chatlog__author-avatar-container"> <img
+          class="chatlog__author-avatar"
+src="https://cdn.discordapp.com/avatars/924937596298207292/da48c4ab76bae93463762c1f040173fa.png?size=128"
+          alt="Avatar" loading="lazy"> </div>
+      <div class="chatlog__messages"> <span
+          class="chatlog__author-name" title="Aftwab Gwapab#0000"
+          data-user-id="924937596298207292" style="">Aftwab Gwapab</span>
+        <span class="chatlog__bot-tag">BOT</span> <span
+          class="chatlog__timestamp">31-Dec-21 02:04 AM</span>
+        <div class="chatlog__message "
+          data-message-id="926294773780856873"
+          id="message-926294773780856873" title="Message sent: 31-Dec-21
+          02:04 AM">
+          <div class="chatlog__content">
+            <div class="markdown"> <span class="preserve-whitespace">The Bwap collapses with a squelch against the inner airlock door spasming, letting out a loud croak. It slides down the surface to the floor trying to reach for something in its robe.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="chatlog__message-group">
+      <div class="chatlog__author-avatar-container"> <img
+          class="chatlog__author-avatar"
+src="https://cdn.discordapp.com/avatars/924937596298207292/04f70f833ff4ce0e3eb2b227ad6fe194.png?size=128"
+          alt="Avatar" loading="lazy"> </div>
+      <div class="chatlog__messages"> <span
+          class="chatlog__author-name" title="Varus Sadratis#0000"
+          data-user-id="924937596298207292" style="">Varus Sadratis</span>
+        <span class="chatlog__bot-tag">BOT</span> <span
+          class="chatlog__timestamp">31-Dec-21 11:19 PM</span>
+        <div class="chatlog__message "
+          data-message-id="926615469522292766"
+          id="message-926615469522292766" title="Message sent: 31-Dec-21
+          11:19 PM">
+          <div class="chatlog__content">
+            <div class="markdown"> <span class="preserve-whitespace">Varas pulls the trigger on the stunner. The Gunner is shocked, has a minor muscel spasps than slumps forward really hard like a heavy rag doll. Without a moment hestitation, he spins along his heels down the corridor. The iris swooshs open. Nother sharp term through the longe. Varus is still locked in the CAR stance, the iris to the airlock opens.
+
+As soon as the Bwap became clear, Varus presses the trigger. They slumped to the ground, and started what seem to be trying to get something in their robes.  Varus in a clear flat tone at the Bwap. "Give me reason to end you. Make you forgotten by everyone." Mostly in hope to get the Bwap to back down, though not entirely.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="chatlog__message-group">
+      <div class="chatlog__author-avatar-container"> <img
+          class="chatlog__author-avatar"
+src="https://cdn.discordapp.com/avatars/576344951319953418/cb25630f3694c6ba673e843fec22bd0c.png?size=128"
+          alt="Avatar" loading="lazy"> </div>
+      <div class="chatlog__messages"> <span
+          class="chatlog__author-name" title="GM#4115"
+          data-user-id="576344951319953418" style="color: rgb(54,57,62)">●</span>
+        <span class="chatlog__timestamp">01-Jan-22 05:39 AM</span>
+        <div class="chatlog__message "
+          data-message-id="926711168989540412"
+          id="message-926711168989540412" title="Message sent: 01-Jan-22
+          05:39 AM">
+          <div class="chatlog__content">
+            <div class="markdown"> <span class="preserve-whitespace"><div class="pre pre--multiline language-md">[Varus](✓=14)PHYS+SITU&lt;Persuade eff=+6&gt;</div></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="chatlog__message-group">
+      <div class="chatlog__author-avatar-container"> <img
+          class="chatlog__author-avatar"
+src="https://cdn.discordapp.com/avatars/924937596298207292/da48c4ab76bae93463762c1f040173fa.png?size=128"
+          alt="Avatar" loading="lazy"> </div>
+      <div class="chatlog__messages"> <span
+          class="chatlog__author-name" title="Aftwab Gwapab#0000"
+          data-user-id="924937596298207292" style="">Aftwab Gwapab</span>
+        <span class="chatlog__bot-tag">BOT</span> <span
+          class="chatlog__timestamp">01-Jan-22 05:44 AM</span>
+        <div class="chatlog__message "
+          data-message-id="926712527503634502"
+          id="message-926712527503634502" title="Message sent: 01-Jan-22
+          05:44 AM">
+          <div class="chatlog__content">
+            <div class="markdown"> <span class="preserve-whitespace">The Bwab lets out a long, loud croak, utterly terrified of the mysterious figure looming above him and faints. An automedic slips from his grip and clatters on the deck.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="chatlog__message-group">
+      <div class="chatlog__author-avatar-container"> <img
+          class="chatlog__author-avatar"
+src="https://cdn.discordapp.com/avatars/576344951319953418/cb25630f3694c6ba673e843fec22bd0c.png?size=128"
+          alt="Avatar" loading="lazy"> </div>
+      <div class="chatlog__messages"> <span
+          class="chatlog__author-name" title="GM#4115"
+          data-user-id="576344951319953418" style="color: rgb(54,57,62)">●</span>
+        <span class="chatlog__timestamp">01-Jan-22 10:50 AM</span>
+        <div class="chatlog__message "
+          data-message-id="926789599404113941"
+          id="message-926789599404113941" title="Message sent: 01-Jan-22
+          10:50 AM">
+          <div class="chatlog__content">
+            <div class="markdown"> <span class="preserve-whitespace"><div class="pre pre--multiline language-md">[Kshi](✓=9)⛓️+1 SITU+1&lt;Throw eff=+1&gt;NATƱ7</div>
+The misty chasm of the cargo bay lies quiet once again, Peter's boots echoeing from the passenger airlock in time to see the tranq grenade being thrown back down to Kshi from the upper deck common room.
+
+He instructs the hacked grav plating to throw it back up and close the iris as the woman yelps trying to dive away from it.
+
+Just before the iris blocks all sound, the banging against the fresher door could be heard from the upper deck and a muffled male voice shouting.
+
+<em>Back on the Sunspear</em>, several HUD elements tied to the Cicendai's systems hack begin flashing. Aryn and Λxqelo would see the rear of the Marava's deckplans flooded with electronic noise, losing track of the engineer's NAS signal.
+
+A far subtler series of status changes cascade through the Cicendai's system.
+<div class="pre pre--multiline language-md">[♢](to oppose=10)&lt;Electronics Computer&gt;
+[♢](to oppose=12)&lt;Electronics Computer&gt;</div>
+<em>On the command deck of the Cicendai,</em> the one male human who had initially overcome the tranquiliser holds his breath and attempts to lunge for the emergency breathing masks only to be...
+<div class="pre pre--multiline language-md">[Haikol](✓=11)STR ⛓️+1&lt;Melee eff=+3&gt;
+[DAM](=6)</div>
+Thrown back right over the console, by a ferocious scrum move by the Aslan. He crumples into a heap.</span>
+              <span class="chatlog__edited-timestamp" title="01-Jan-22
+                10:52 AM">(edited)</span> </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="chatlog__message-group">
+      <div class="chatlog__author-avatar-container"> <img
+          class="chatlog__author-avatar"
+src="https://cdn.discordapp.com/avatars/924937596298207292/dd4c8d69a383b05dbadd341a5e14b224.png?size=128"
+          alt="Avatar" loading="lazy"> </div>
+      <div class="chatlog__messages"> <span
+          class="chatlog__author-name" title="Peter Percy#0000"
+          data-user-id="924937596298207292" style="">Peter Percy</span>
+        <span class="chatlog__bot-tag">BOT</span> <span
+          class="chatlog__timestamp">01-Jan-22 12:10 PM</span>
+        <div class="chatlog__message "
+          data-message-id="926809559580958750"
+          id="message-926809559580958750" title="Message sent: 01-Jan-22
+          12:10 PM">
+          <div class="chatlog__content">
+            <div class="markdown"> <span class="preserve-whitespace">Seeing Haikol’s devastating shield work Peter does an about face, striding back into the cargo hold, Peter has Λxqelo restore comms in engineering and starts a negotiated surrender
+“To the Cicendai crewman in engineering, it is time to discuss your surrender. We have control of the ship and you have lost. Bravery will only cost you and your crewmates.”
+Over a private channel
+“Kshi, keep an eye on the guy I the fresher. Varus regroup and plan how to take the engineering area”</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="chatlog__message-group">
+      <div class="chatlog__author-avatar-container"> <img
+          class="chatlog__author-avatar"
+src="https://cdn.discordapp.com/avatars/576344951319953418/cb25630f3694c6ba673e843fec22bd0c.png?size=128"
+          alt="Avatar" loading="lazy"> </div>
+      <div class="chatlog__messages"> <span
+          class="chatlog__author-name" title="GM#4115"
+          data-user-id="576344951319953418" style="color: rgb(54,57,62)">●</span>
+        <span class="chatlog__timestamp">02-Jan-22 03:34 AM</span>
+        <div class="chatlog__message "
+          data-message-id="927042209843400765"
+          id="message-927042209843400765" title="Message sent: 02-Jan-22
+          03:34 AM">
+          <div class="chatlog__content">
+            <div class="markdown"> <span class="preserve-whitespace"><div class="pre pre--multiline language-md">[Aryn](❌6&lt;11)⛓️+1&lt;Oppose Sensors eff=-5&gt;
+[Λxqelo](✓12&lt;12)⛓️+1&lt;Oppose Computer eff=0&gt;
+[Peter](✓=12)INT&lt;Broker eff=+4&gt;</div>
+As the visibility clears up in the Cargo Hold, Peter would see the opened panel accessing the starboard M-Drive compartment.
+
+His voice echoes through the ship.
+
+Λxqelo is distracted by several of the locking mechanisms being switched to manual when he interprets fluctuations in the Cicendai's power-plant. Phases of power output along the main trunk to the various systems suddenly align and cancel eachother out momentarily.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="chatlog__message-group">
+      <div class="chatlog__author-avatar-container"> <img
+          class="chatlog__author-avatar"
+src="https://cdn.discordapp.com/avatars/924937596298207292/4a0359d3310fd86c5db90d70ca49f65b.png?size=128"
+          alt="Avatar" loading="lazy"> </div>
+      <div class="chatlog__messages"> <span
+          class="chatlog__author-name" title="Kshi-Voha
+          Banks'fiy'Hrakoea#0000" data-user-id="924937596298207292"
+          style="">Kshi-Voha Banks'fiy'Hrakoea</span> <span
+          class="chatlog__bot-tag">BOT</span> <span
+          class="chatlog__timestamp">02-Jan-22 03:34 AM</span>
+        <div class="chatlog__message "
+          data-message-id="927042262570008577"
+          id="message-927042262570008577" title="Message sent: 02-Jan-22
+          03:34 AM">
+          <div class="chatlog__content">
+            <div class="markdown"> <span class="preserve-whitespace">Kshi pokes his head up into the Common Room hearing the male, presumably human, locked in the fresher battering the door. Unfortunately, the lightweight partitions between non-critical architecture won't last long. The human woman who was up here can be sen passed out near some of the tables.
+
+He has to catch himself when the gravity is momentarily nullified.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="chatlog__message-group">
+      <div class="chatlog__author-avatar-container"> <img
+          class="chatlog__author-avatar"
+src="https://cdn.discordapp.com/avatars/576344951319953418/cb25630f3694c6ba673e843fec22bd0c.png?size=128"
+          alt="Avatar" loading="lazy"> </div>
+      <div class="chatlog__messages"> <span
+          class="chatlog__author-name" title="GM#4115"
+          data-user-id="576344951319953418" style="color: rgb(54,57,62)">●</span>
+        <span class="chatlog__timestamp">02-Jan-22 03:35 AM</span>
+        <div class="chatlog__message "
+          data-message-id="927042293419114566"
+          id="message-927042293419114566" title="Message sent: 02-Jan-22
+          03:35 AM">
+          <div class="chatlog__content">
+            <div class="markdown"> <span class="preserve-whitespace">Minor systems restart automatically, while certain major systems like the M-Drive and grav plating cut out.
+
+Everybody on board feels the lurch, momentarily becoming weightless as the Marava begins to fall.
+
+Everyone on the Harrier, aside from Margaret, panic at the approaching hulk about to break their nose when the blinding UV radiation of the M-Drive flare back up - resulting in a mild tap.
+
+Λxqelo manages to clear up the sensor noise, only to no longer have a track on the Engineer.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="chatlog__message-group">
+      <div class="chatlog__author-avatar-container"> <img
+          class="chatlog__author-avatar"
+src="https://cdn.discordapp.com/avatars/924937596298207292/221a352774dd5e4bdf6c4630e39542e8.png?size=128"
+          alt="Avatar" loading="lazy"> </div>
+      <div class="chatlog__messages"> <span
+          class="chatlog__author-name" title="Djaa#0000"
+          data-user-id="924937596298207292" style="">Djaa</span> <span
+          class="chatlog__bot-tag">BOT</span> <span
+          class="chatlog__timestamp">02-Jan-22 03:35 AM</span>
+        <div class="chatlog__message "
+          data-message-id="927042308950609920"
+          id="message-927042308950609920" title="Message sent: 02-Jan-22
+          03:35 AM">
+          <div class="chatlog__content">
+            <div class="markdown"> <span class="preserve-whitespace">"You don't have shit!" her voice is a strange mix of a non-human softness, as if a voice could be three forms of luxurious cream, clarified butter and treacle - trying to be abrasive.
+
+"If you've hurt..." you hear shuffling and straining, "I'm going to say if you've killed anyone, we're all going down together. And then you're going to say, 'no-one's been hurt,' I'm gonna say 'prove it.'"
+
+By the sounds of it, she is well spoken and evidently an intelligent opponent.
+
+"How are we going to get out of this one alive, huh?"</span> </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="chatlog__message-group">
+      <div class="chatlog__author-avatar-container"> <img
+          class="chatlog__author-avatar"
+src="https://cdn.discordapp.com/avatars/924937596298207292/04f70f833ff4ce0e3eb2b227ad6fe194.png?size=128"
+          alt="Avatar" loading="lazy"> </div>
+      <div class="chatlog__messages"> <span
+          class="chatlog__author-name" title="Varus Sadratis#0000"
+          data-user-id="924937596298207292" style="">Varus Sadratis</span>
+        <span class="chatlog__bot-tag">BOT</span> <span
+          class="chatlog__timestamp">02-Jan-22 03:51 AM</span>
+        <div class="chatlog__message "
+          data-message-id="927046362531508244"
+          id="message-927046362531508244" title="Message sent: 02-Jan-22
+          03:51 AM">
+          <div class="chatlog__content">
+            <div class="markdown"> <span class="preserve-whitespace">Varus frowns, and says to the Comm for the boarding party and the Sunspear. "Dont do any more neogating until we have the bridge and engineering, we dont have control of the ship. From either end, they can stlill force us to retreat. There is one in engineering, and have 3 tranq grenades left. It shouldnt be difficult to hold engineering. And Ksi can force them out of the bridge from engineering."</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="chatlog__message-group">
+      <div class="chatlog__author-avatar-container"> <img
+          class="chatlog__author-avatar"
+src="https://cdn.discordapp.com/avatars/924937596298207292/661a833f7de5557d4f458cf7e19e74e4.png?size=128"
+          alt="Avatar" loading="lazy"> </div>
+      <div class="chatlog__messages"> <span
+          class="chatlog__author-name" title="Haikol#0000"
+          data-user-id="924937596298207292" style="">Haikol</span> <span
+          class="chatlog__bot-tag">BOT</span> <span
+          class="chatlog__timestamp">02-Jan-22 03:55 AM</span>
+        <div class="chatlog__message "
+          data-message-id="927047303330676746"
+          id="message-927047303330676746" title="Message sent: 02-Jan-22
+          03:55 AM">
+          <div class="chatlog__content">
+            <div class="markdown"> <span class="preserve-whitespace">"I am in the Bridge and have it locked down. Lots of Gas, a few awake still but the rest asleep." <em>Haikol pipes up.</em></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="chatlog__message-group">
+      <div class="chatlog__author-avatar-container"> <img
+          class="chatlog__author-avatar"
+src="https://cdn.discordapp.com/avatars/576344951319953418/cb25630f3694c6ba673e843fec22bd0c.png?size=128"
+          alt="Avatar" loading="lazy"> </div>
+      <div class="chatlog__messages"> <span
+          class="chatlog__author-name" title="GM#4115"
+          data-user-id="576344951319953418" style="color: rgb(54,57,62)">●</span>
+        <span class="chatlog__timestamp">02-Jan-22 03:58 AM</span>
+        <div class="chatlog__message "
+          data-message-id="927048252812054558"
+          id="message-927048252812054558" title="Message sent: 02-Jan-22
+          03:58 AM">
+          <div class="chatlog__content">
+            <div class="markdown"> <span class="preserve-whitespace">The Cicendai bridge crew barely stir, totally knocked out by now from the Fentanyl. The male that had resisted the longest, suffering from a minor concussion as the drug takes hold.
+
+The Aslan, being the largest, can barely keep her nictitating membranes open - her eyes a milky white. She begins snoring.</span>
+              <span class="chatlog__edited-timestamp" title="02-Jan-22
+                03:59 AM">(edited)</span> </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="chatlog__message-group">
+      <div class="chatlog__author-avatar-container"> <img
+          class="chatlog__author-avatar"
+src="https://cdn.discordapp.com/avatars/924937596298207292/306aa92233e1a42c488b69aa1ba81ff1.png?size=128"
+          alt="Avatar" loading="lazy"> </div>
+      <div class="chatlog__messages"> <span
+          class="chatlog__author-name" title="The Arachnid#0000"
+          data-user-id="924937596298207292" style="">The Arachnid</span>
+        <span class="chatlog__bot-tag">BOT</span> <span
+          class="chatlog__timestamp">02-Jan-22 04:00 AM</span>
+        <div class="chatlog__message "
+          data-message-id="927048628026089472"
+          id="message-927048628026089472" title="Message sent: 02-Jan-22
+          04:00 AM">
+          <div class="chatlog__content">
+            <div class="markdown"> <span class="preserve-whitespace">Haikol would also hear the automaton clacking away, taking a right turn (from his point of view) into the Captain's Stateroom.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="chatlog__message-group">
+      <div class="chatlog__author-avatar-container"> <img
+          class="chatlog__author-avatar"
+src="https://cdn.discordapp.com/avatars/924937596298207292/661a833f7de5557d4f458cf7e19e74e4.png?size=128"
+          alt="Avatar" loading="lazy"> </div>
+      <div class="chatlog__messages"> <span
+          class="chatlog__author-name" title="Haikol#0000"
+          data-user-id="924937596298207292" style="">Haikol</span> <span
+          class="chatlog__bot-tag">BOT</span> <span
+          class="chatlog__timestamp">02-Jan-22 04:42 AM</span>
+        <div class="chatlog__message "
+          data-message-id="927059360427958372"
+          id="message-927059360427958372" title="Message sent: 02-Jan-22
+          04:42 AM">
+          <div class="chatlog__content">
+            <div class="markdown"> <span class="preserve-whitespace"><em>Haikol begins to pull each of them out of the room so they can breathe easy and not suffocate. Zipties for each ones hands and feet. The aslan Female getting more.. delicate but still appropriate restraints.</em></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="chatlog__message-group">
+      <div class="chatlog__author-avatar-container"> <img
+          class="chatlog__author-avatar"
+src="https://cdn.discordapp.com/avatars/924937596298207292/221a352774dd5e4bdf6c4630e39542e8.png?size=128"
+          alt="Avatar" loading="lazy"> </div>
+      <div class="chatlog__messages"> <span
+          class="chatlog__author-name" title="Djaa#0000"
+          data-user-id="924937596298207292" style="">Djaa</span> <span
+          class="chatlog__bot-tag">BOT</span> <span
+          class="chatlog__timestamp">02-Jan-22 05:06 AM</span>
+        <div class="chatlog__message "
+          data-message-id="927065351844429884"
+          id="message-927065351844429884" title="Message sent: 02-Jan-22
+          05:06 AM">
+          <div class="chatlog__content">
+            <div class="markdown"> <span class="preserve-whitespace">The intercomm clicks again, "And you can tell Admiral Darokyn to go to hell - since there's no chance you're from Khtiyrlo or sent by the Siyajkhoara."</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="chatlog__message-group">
+      <div class="chatlog__author-avatar-container"> <img
+          class="chatlog__author-avatar"
+src="https://cdn.discordapp.com/avatars/576344951319953418/cb25630f3694c6ba673e843fec22bd0c.png?size=128"
+          alt="Avatar" loading="lazy"> </div>
+      <div class="chatlog__messages"> <span
+          class="chatlog__author-name" title="GM#4115"
+          data-user-id="576344951319953418" style="color: rgb(54,57,62)">●</span>
+        <span class="chatlog__timestamp">02-Jan-22 05:06 AM</span>
+        <div class="chatlog__message "
+          data-message-id="927065360287555664"
+          id="message-927065360287555664" title="Message sent: 02-Jan-22
+          05:06 AM">
+          <div class="chatlog__content">
+            <div class="markdown"> <span class="preserve-whitespace">The admiral's name might be vaguely familiar. Her assumption being that the hostile boarders were too clinical in their takeover for anyone from Glories Under the Claw, or the Company of Grandmotherly Kindess - or for that matter most other groups in the Reach.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="chatlog__message-group">
+      <div class="chatlog__author-avatar-container"> <img
+          class="chatlog__author-avatar"
+src="https://cdn.discordapp.com/avatars/156081781521645568/28fb8d062c903a690e1308ac9f9190c0.png?size=128"
+          alt="Avatar" loading="lazy"> </div>
+      <div class="chatlog__messages"> <span
+          class="chatlog__author-name" title="Korzan#5552"
+          data-user-id="156081781521645568" style="color:
+          rgb(46,204,113)">Korzan</span> <span
+          class="chatlog__timestamp">02-Jan-22 05:07 AM</span>
+        <div class="chatlog__message "
+          data-message-id="927065632313311333"
+          id="message-927065632313311333" title="Message sent: 02-Jan-22
+          05:07 AM">
+          <div class="chatlog__content">
+            <div class="markdown"> <span class="preserve-whitespace"><em>Haikol continues to pull them out, bound, not gagged but they are being searched for weapons, equipment. This is now Peters and Varrus' domain to deal with the Enginseer. Hopefully they don't plummet to a crushing defeat!</em></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="chatlog__message-group">
+      <div class="chatlog__author-avatar-container"> <img
+          class="chatlog__author-avatar"
+src="https://cdn.discordapp.com/avatars/576344951319953418/cb25630f3694c6ba673e843fec22bd0c.png?size=128"
+          alt="Avatar" loading="lazy"> </div>
+      <div class="chatlog__messages"> <span
+          class="chatlog__author-name" title="GM#4115"
+          data-user-id="576344951319953418" style="color: rgb(54,57,62)">●</span>
+        <span class="chatlog__timestamp">02-Jan-22 05:37 AM</span>
+        <div class="chatlog__message "
+          data-message-id="927073014728785930"
+          id="message-927073014728785930" title="Message sent: 02-Jan-22
+          05:37 AM">
+          <div class="chatlog__content">
+            <div class="markdown"> <span class="preserve-whitespace">The Male Human that had withstood the initial gas has ID as a Drinaxi citizen, under the name Tyrax. He also carries...
+<div class="pre pre--multiline nohighlight">Two 5-inch (12.7 cm) metal and glass disks that hover around your wrists</div>
+<div class="pre pre--multiline nohighlight">Canteen 3 1 Cr10</div>
+<div class="pre pre--multiline nohighlight">MAGRAIL PISTOL</div></span>
+              <span class="chatlog__edited-timestamp" title="02-Jan-22
+                06:11 AM">(edited)</span> </div>
+          </div>
+        </div>
+        <div class="chatlog__message "
+          data-message-id="927073140213968916"
+          id="message-927073140213968916" title="Message sent: 02-Jan-22
+          05:37 AM">
+          <div class="chatlog__content">
+            <div class="markdown"> <span class="preserve-whitespace">The human woman who was collapsed on the pilot's station has no official ID on her, but seems to identify as Mirage...
+<div class="pre pre--multiline nohighlight">Geiger Counter
+TL8 Cr400</div>
+<div class="pre pre--multiline nohighlight">:Zippy: 
+PERSONAL TRAINER
+Personal Trainer 1 TL8 Cr2000</div></span> <span
+                class="chatlog__edited-timestamp" title="02-Jan-22 06:11
+                AM">(edited)</span> </div>
+          </div>
+        </div>
+        <div class="chatlog__message "
+          data-message-id="927073226826350622"
+          id="message-927073226826350622" title="Message sent: 02-Jan-22
+          05:38 AM">
+          <div class="chatlog__content">
+            <div class="markdown"> <span class="preserve-whitespace">Syrohn is the ID of the other human male, at the ancillary bridge controls...
+<div class="pre pre--multiline nohighlight">ANTI-RAD
+Anti-rad 8 - Cr1000</div>
+<div class="pre pre--multiline nohighlight">TRUTH SERUM
+Truth Serum 5 - Cr500</div></span> <span
+                class="chatlog__edited-timestamp" title="02-Jan-22 06:12
+                AM">(edited)</span> </div>
+          </div>
+        </div>
+        <div class="chatlog__message "
+          data-message-id="927073249249075241"
+          id="message-927073249249075241" title="Message sent: 02-Jan-22
+          05:38 AM">
+          <div class="chatlog__content">
+            <div class="markdown"> <span class="preserve-whitespace">The Aslan has a Clan Badge for the Taukhaotuar in her hair and goes by the name Ftiya...
+<div class="pre pre--multiline nohighlight">REMEMBRANCE HOLOGRAM
+Remembrance Hologram 9 - Cr250</div>
+<div class="pre pre--multiline nohighlight">MAGRAIL PISTOL</div></span>
+              <span class="chatlog__edited-timestamp" title="02-Jan-22
+                06:12 AM">(edited)</span> </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="chatlog__message-group">
+      <div class="chatlog__author-avatar-container"> <img
+          class="chatlog__author-avatar"
+src="https://cdn.discordapp.com/avatars/924937596298207292/dd4c8d69a383b05dbadd341a5e14b224.png?size=128"
+          alt="Avatar" loading="lazy"> </div>
+      <div class="chatlog__messages"> <span
+          class="chatlog__author-name" title="Peter Percy#0000"
+          data-user-id="924937596298207292" style="">Peter Percy</span>
+        <span class="chatlog__bot-tag">BOT</span> <span
+          class="chatlog__timestamp">02-Jan-22 05:49 AM</span>
+        <div class="chatlog__message "
+          data-message-id="927076068060463114"
+          id="message-927076068060463114" title="Message sent: 02-Jan-22
+          05:49 AM">
+          <div class="chatlog__content">
+            <div class="markdown"> <span class="preserve-whitespace">Over a private channel to Varus "Stand down Varus, as Captain I am telling you that we will negotiate. Engineering has a number of compartments, and we no longer know where they are."
+
+Over the Cicendai's intercoms to Djaa "Calm down, if you wish to get you and your friends out of this alive you will discuss things. Give us time and we can prove that none of your team have suffered any lasting harm."</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="chatlog__message-group">
+      <div class="chatlog__author-avatar-container"> <img
+          class="chatlog__author-avatar"
+src="https://cdn.discordapp.com/avatars/924937596298207292/221a352774dd5e4bdf6c4630e39542e8.png?size=128"
+          alt="Avatar" loading="lazy"> </div>
+      <div class="chatlog__messages"> <span
+          class="chatlog__author-name" title="Djaa#0000"
+          data-user-id="924937596298207292" style="">Djaa</span> <span
+          class="chatlog__bot-tag">BOT</span> <span
+          class="chatlog__timestamp">02-Jan-22 05:52 AM</span>
+        <div class="chatlog__message "
+          data-message-id="927076869419982898"
+          id="message-927076869419982898" title="Message sent: 02-Jan-22
+          05:52 AM">
+          <div class="chatlog__content">
+            <div class="markdown"> <span class="preserve-whitespace">"No tricks! Broadcast widely in a low TL UHF. You got a minute. Try anything at the doors, you got 30 seconds. Meanwhile get your men to just take whatever the hell they want and prepare to get the hell of the ship."
+
+Her request for a passive broadcast is likely a way to avoid you locating her accurately.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="chatlog__message-group">
+      <div class="chatlog__author-avatar-container"> <img
+          class="chatlog__author-avatar"
+src="https://cdn.discordapp.com/avatars/924937596298207292/dd4c8d69a383b05dbadd341a5e14b224.png?size=128"
+          alt="Avatar" loading="lazy"> </div>
+      <div class="chatlog__messages"> <span
+          class="chatlog__author-name" title="Peter Percy#0000"
+          data-user-id="924937596298207292" style="">Peter Percy</span>
+        <span class="chatlog__bot-tag">BOT</span> <span
+          class="chatlog__timestamp">02-Jan-22 06:02 AM</span>
+        <div class="chatlog__message "
+          data-message-id="927079346848542760"
+          id="message-927079346848542760" title="Message sent: 02-Jan-22
+          06:02 AM">
+          <div class="chatlog__content">
+            <div class="markdown"> <span class="preserve-whitespace">"Happy to show you footage of your friends, but we shal be taking our time. I don't think you are in any rush to consign them to hell."</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="chatlog__message-group">
+      <div class="chatlog__author-avatar-container"> <img
+          class="chatlog__author-avatar"
+src="https://cdn.discordapp.com/avatars/576344951319953418/cb25630f3694c6ba673e843fec22bd0c.png?size=128"
+          alt="Avatar" loading="lazy"> </div>
+      <div class="chatlog__messages"> <span
+          class="chatlog__author-name" title="GM#4115"
+          data-user-id="576344951319953418" style="color: rgb(54,57,62)">●</span>
+        <span class="chatlog__timestamp">02-Jan-22 06:03 AM</span>
+        <div class="chatlog__message "
+          data-message-id="927079554080702505"
+          id="message-927079554080702505" title="Message sent: 02-Jan-22
+          06:03 AM">
+          <div class="chatlog__content">
+            <div class="markdown"> <span class="preserve-whitespace"><div class="pre pre--multiline language-md">[Peter](✓=12)INT&lt;Broker eff=+4&gt;
+APPLIED</div></span> </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="chatlog__message-group">
+      <div class="chatlog__author-avatar-container"> <img
+          class="chatlog__author-avatar"
+src="https://cdn.discordapp.com/avatars/924937596298207292/dd4c8d69a383b05dbadd341a5e14b224.png?size=128"
+          alt="Avatar" loading="lazy"> </div>
+      <div class="chatlog__messages"> <span
+          class="chatlog__author-name" title="Peter Percy#0000"
+          data-user-id="924937596298207292" style="">Peter Percy</span>
+        <span class="chatlog__bot-tag">BOT</span> <span
+          class="chatlog__timestamp">02-Jan-22 06:03 AM</span>
+        <div class="chatlog__message "
+          data-message-id="927079735765368832"
+          id="message-927079735765368832" title="Message sent: 02-Jan-22
+          06:03 AM">
+          <div class="chatlog__content">
+            <div class="markdown"> <span class="preserve-whitespace">Over a private line "Λxqelo please set up the UHF transmission as requested."</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="chatlog__message-group">
+      <div class="chatlog__author-avatar-container"> <img
+          class="chatlog__author-avatar"
+src="https://cdn.discordapp.com/avatars/924937596298207292/dd4c8d69a383b05dbadd341a5e14b224.png?size=128"
+          alt="Avatar" loading="lazy"> </div>
+      <div class="chatlog__messages"> <span
+          class="chatlog__author-name" title="Peter Percy#0000"
+          data-user-id="924937596298207292" style="">Peter Percy</span>
+        <span class="chatlog__bot-tag">BOT</span> <span
+          class="chatlog__timestamp">02-Jan-22 07:28 AM</span>
+        <div class="chatlog__message "
+          data-message-id="927101130046066728"
+          id="message-927101130046066728" title="Message sent: 02-Jan-22
+          07:28 AM">
+          <div class="chatlog__content">
+            <div class="markdown"> <span class="preserve-whitespace">Over the Cicendai’s con’s once more “Before we go much further, are you or this Arthil guilty of a capital crime in these parts?”</span>
+              <span class="chatlog__edited-timestamp" title="02-Jan-22
+                07:57 PM">(edited)</span> </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="chatlog__message-group">
+      <div class="chatlog__author-avatar-container"> <img
+          class="chatlog__author-avatar"
+src="https://cdn.discordapp.com/avatars/576344951319953418/cb25630f3694c6ba673e843fec22bd0c.png?size=128"
+          alt="Avatar" loading="lazy"> </div>
+      <div class="chatlog__messages"> <span
+          class="chatlog__author-name" title="GM#4115"
+          data-user-id="576344951319953418" style="color: rgb(54,57,62)">●</span>
+        <span class="chatlog__timestamp">02-Jan-22 08:08 AM</span>
+        <div class="chatlog__message "
+          data-message-id="927111082823262238"
+          id="message-927111082823262238" title="Message sent: 02-Jan-22
+          08:08 AM">
+          <div class="chatlog__content">
+            <div class="markdown"> <span class="preserve-whitespace"><div class="pre pre--multiline language-md">AWAITING ⛓ &gt;&gt;&gt;
+[Peter](=9)INT&lt;Deception&gt;</div>
+Varus and Haikol converge on Peter to conspire as Kshi remains on the upper deck, giggling to himself at the person stuck at the fresher.
+
+The smile is wiped from his face when the relatively thin partition, meant only for privacy from the common room as opposed to a bulkhead, bows somewhat from a presumable shoulder-barge. He slips his boarding vacc suit glove off, charging the stun glove underneath.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="chatlog__message-group">
+      <div class="chatlog__author-avatar-container"> <img
+          class="chatlog__author-avatar"
+src="https://cdn.discordapp.com/avatars/924937596298207292/661a833f7de5557d4f458cf7e19e74e4.png?size=128"
+          alt="Avatar" loading="lazy"> </div>
+      <div class="chatlog__messages"> <span
+          class="chatlog__author-name" title="Haikol#0000"
+          data-user-id="924937596298207292" style="">Haikol</span> <span
+          class="chatlog__bot-tag">BOT</span> <span
+          class="chatlog__timestamp">02-Jan-22 09:12 AM</span>
+        <div class="chatlog__message "
+          data-message-id="927127262237716510"
+          id="message-927127262237716510" title="Message sent: 02-Jan-22
+          09:12 AM">
+          <div class="chatlog__content">
+            <div class="markdown"> <span class="preserve-whitespace"><em>Haikol moves to check out the Captains Quarters for the moment, see what the Spider bot is getting and see what is of value within!</em></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="chatlog__message-group">
+      <div class="chatlog__author-avatar-container"> <img
+          class="chatlog__author-avatar"
+src="https://cdn.discordapp.com/avatars/576344951319953418/cb25630f3694c6ba673e843fec22bd0c.png?size=128"
+          alt="Avatar" loading="lazy"> </div>
+      <div class="chatlog__messages"> <span
+          class="chatlog__author-name" title="GM#4115"
+          data-user-id="576344951319953418" style="color: rgb(54,57,62)">●</span>
+        <span class="chatlog__timestamp">02-Jan-22 09:37 AM</span>
+        <div class="chatlog__message "
+          data-message-id="927133429642977320"
+          id="message-927133429642977320" title="Message sent: 02-Jan-22
+          09:37 AM">
+          <div class="chatlog__content">
+            <div class="markdown"> <span class="preserve-whitespace">The Captain's Quarters is a sight, perhaps, refreshing to Haikol. Utterly chocked full of recognisable iconography for an Aslan.
+
+The flag of the planet Ftoakh - infamous among the Hierate as an example of the highs and lows of diverse clans living together. He sees a shrine to the heroes of the Euikhter, unique among Aslans - birthed from the fires of recent war and ancestral memories of wars that nearly wiped the galaxy of Aslans altogether - it harkens back almost to the ancient Terran concept of the United Nations Peacekeeping force.
+
+An organisation that highly prizes Female skillsets to maintain unity between especially "deviant" clan philosophies. Deviants such as the Taukhaotuar whose males clone themselves.
+
+A highly decorated Fierah (a weaponised sash) adorns one of the walls as well as a mounted, modified Takheal (sniper rifle) adorned with Euikhter heraldry.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="chatlog__message-group">
+      <div class="chatlog__author-avatar-container"> <img
+          class="chatlog__author-avatar"
+src="https://cdn.discordapp.com/avatars/924937596298207292/306aa92233e1a42c488b69aa1ba81ff1.png?size=128"
+          alt="Avatar" loading="lazy"> </div>
+      <div class="chatlog__messages"> <span
+          class="chatlog__author-name" title="The Arachnid#0000"
+          data-user-id="924937596298207292" style="">The Arachnid</span>
+        <span class="chatlog__bot-tag">BOT</span> <span
+          class="chatlog__timestamp">02-Jan-22 09:37 AM</span>
+        <div class="chatlog__message "
+          data-message-id="927133441672224768"
+          id="message-927133441672224768" title="Message sent: 02-Jan-22
+          09:37 AM">
+          <div class="chatlog__content">
+            <div class="markdown"> <span class="preserve-whitespace">The eight legged drone tip taps back and forth as if a pet leading its master. Haikol spots it disappearing under the bed.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="chatlog__message-group">
+      <div class="chatlog__author-avatar-container"> <img
+          class="chatlog__author-avatar"
+src="https://cdn.discordapp.com/avatars/924937596298207292/661a833f7de5557d4f458cf7e19e74e4.png?size=128"
+          alt="Avatar" loading="lazy"> </div>
+      <div class="chatlog__messages"> <span
+          class="chatlog__author-name" title="Haikol#0000"
+          data-user-id="924937596298207292" style="">Haikol</span> <span
+          class="chatlog__bot-tag">BOT</span> <span
+          class="chatlog__timestamp">02-Jan-22 09:45 AM</span>
+        <div class="chatlog__message "
+          data-message-id="927135566611513344"
+          id="message-927135566611513344" title="Message sent: 02-Jan-22
+          09:45 AM">
+          <div class="chatlog__content">
+            <div class="markdown"> <span class="preserve-whitespace"><em>He follows it, approaching the bed and kneeling down to reach under and hopefully, not get bitten if this spider turned out to be the trap-door kind and the bed its new home!</em></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="chatlog__message-group">
+      <div class="chatlog__author-avatar-container"> <img
+          class="chatlog__author-avatar"
+src="https://cdn.discordapp.com/avatars/156081781521645568/28fb8d062c903a690e1308ac9f9190c0.png?size=128"
+          alt="Avatar" loading="lazy"> </div>
+      <div class="chatlog__messages"> <span
+          class="chatlog__author-name" title="Korzan#5552"
+          data-user-id="156081781521645568" style="color:
+          rgb(46,204,113)">Korzan</span> <span
+          class="chatlog__timestamp">02-Jan-22 09:47 AM</span>
+        <div class="chatlog__message "
+          data-message-id="927136074801774602"
+          id="message-927136074801774602" title="Message sent: 02-Jan-22
+          09:47 AM">
+          <div class="chatlog__content">
+            <div class="markdown"> <span class="preserve-whitespace">(Spider first, then admire the scene!)</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="chatlog__message-group">
+      <div class="chatlog__author-avatar-container"> <img
+          class="chatlog__author-avatar"
+src="https://cdn.discordapp.com/avatars/924937596298207292/306aa92233e1a42c488b69aa1ba81ff1.png?size=128"
+          alt="Avatar" loading="lazy"> </div>
+      <div class="chatlog__messages"> <span
+          class="chatlog__author-name" title="The Arachnid#0000"
+          data-user-id="924937596298207292" style="">The Arachnid</span>
+        <span class="chatlog__bot-tag">BOT</span> <span
+          class="chatlog__timestamp">02-Jan-22 09:48 AM</span>
+        <div class="chatlog__message "
+          data-message-id="927136237431713802"
+          id="message-927136237431713802" title="Message sent: 02-Jan-22
+          09:48 AM">
+          <div class="chatlog__content">
+            <div class="markdown"> <span class="preserve-whitespace">The automaton could be heard skittering around underneath. Peaking out momentarily and using it's front two legs to make a lifting gesture.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="chatlog__message-group">
+      <div class="chatlog__author-avatar-container"> <img
+          class="chatlog__author-avatar"
+src="https://cdn.discordapp.com/avatars/924937596298207292/661a833f7de5557d4f458cf7e19e74e4.png?size=128"
+          alt="Avatar" loading="lazy"> </div>
+      <div class="chatlog__messages"> <span
+          class="chatlog__author-name" title="Haikol#0000"
+          data-user-id="924937596298207292" style="">Haikol</span> <span
+          class="chatlog__bot-tag">BOT</span> <span
+          class="chatlog__timestamp">02-Jan-22 09:50 AM</span>
+        <div class="chatlog__message "
+          data-message-id="927136640596590593"
+          id="message-927136640596590593" title="Message sent: 02-Jan-22
+          09:50 AM">
+          <div class="chatlog__content">
+            <div class="markdown"> <span class="preserve-whitespace"><em>He grumbles and carefully lifts the bed, paying more respect as to not disturb this rather beautiful room. Honestly, something he wants to do with his own quarters.</em></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="chatlog__message-group">
+      <div class="chatlog__author-avatar-container"> <img
+          class="chatlog__author-avatar"
+src="https://cdn.discordapp.com/avatars/576344951319953418/cb25630f3694c6ba673e843fec22bd0c.png?size=128"
+          alt="Avatar" loading="lazy"> </div>
+      <div class="chatlog__messages"> <span
+          class="chatlog__author-name" title="GM#4115"
+          data-user-id="576344951319953418" style="color: rgb(54,57,62)">●</span>
+        <span class="chatlog__timestamp">02-Jan-22 09:57 AM</span>
+        <div class="chatlog__message "
+          data-message-id="927138468784644146"
+          id="message-927138468784644146" title="Message sent: 02-Jan-22
+          09:57 AM">
+          <div class="chatlog__content">
+            <div class="markdown"> <span class="preserve-whitespace">Intially it doesn't look like there's anything there. However, at the furthest corner of the room beneath the bed to one side is an area with frost. The drone's proximity seems to make a seam appear.
+
+It looks almost like a detachable panel, the size of a hand, near some cryo-piping, collant for some system somwehere.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="chatlog__message-group">
+      <div class="chatlog__author-avatar-container"> <img
+          class="chatlog__author-avatar"
+src="https://cdn.discordapp.com/avatars/924937596298207292/661a833f7de5557d4f458cf7e19e74e4.png?size=128"
+          alt="Avatar" loading="lazy"> </div>
+      <div class="chatlog__messages"> <span
+          class="chatlog__author-name" title="Haikol#0000"
+          data-user-id="924937596298207292" style="">Haikol</span> <span
+          class="chatlog__bot-tag">BOT</span> <span
+          class="chatlog__timestamp">02-Jan-22 10:05 AM</span>
+        <div class="chatlog__message "
+          data-message-id="927140441986588712"
+          id="message-927140441986588712" title="Message sent: 02-Jan-22
+          10:05 AM">
+          <div class="chatlog__content">
+            <div class="markdown"> <span class="preserve-whitespace"><em>Haikol wanders over and will try and open it. If he can. Or if the Spooder needs to open it with its stabby bits.</em></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="chatlog__message-group">
+      <div class="chatlog__author-avatar-container"> <img
+          class="chatlog__author-avatar"
+src="https://cdn.discordapp.com/avatars/576344951319953418/cb25630f3694c6ba673e843fec22bd0c.png?size=128"
+          alt="Avatar" loading="lazy"> </div>
+      <div class="chatlog__messages"> <span
+          class="chatlog__author-name" title="GM#4115"
+          data-user-id="576344951319953418" style="color: rgb(54,57,62)">●</span>
+        <span class="chatlog__timestamp">02-Jan-22 10:09 AM</span>
+        <div class="chatlog__message "
+          data-message-id="927141428616900709"
+          id="message-927141428616900709" title="Message sent: 02-Jan-22
+          10:09 AM">
+          <div class="chatlog__content">
+            <div class="markdown"> <span class="preserve-whitespace">The panel seems to open up quite easily to Haikol's touch - as if the mere presence of the drone is some kind of unlock. Cold air and condensation streams out of the hand sized hole.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="chatlog__message-group">
+      <div class="chatlog__author-avatar-container"> <img
+          class="chatlog__author-avatar"
+src="https://cdn.discordapp.com/avatars/924937596298207292/306aa92233e1a42c488b69aa1ba81ff1.png?size=128"
+          alt="Avatar" loading="lazy"> </div>
+      <div class="chatlog__messages"> <span
+          class="chatlog__author-name" title="The Arachnid#0000"
+          data-user-id="924937596298207292" style="">The Arachnid</span>
+        <span class="chatlog__bot-tag">BOT</span> <span
+          class="chatlog__timestamp">02-Jan-22 10:09 AM</span>
+        <div class="chatlog__message "
+          data-message-id="927141559877652520"
+          id="message-927141559877652520" title="Message sent: 02-Jan-22
+          10:09 AM">
+          <div class="chatlog__content">
+            <div class="markdown"> <span class="preserve-whitespace">The drone uses its two front legs in a gesture to Haikol as if to reach in.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="chatlog__message-group">
+      <div class="chatlog__author-avatar-container"> <img
+          class="chatlog__author-avatar"
+src="https://cdn.discordapp.com/avatars/924937596298207292/661a833f7de5557d4f458cf7e19e74e4.png?size=128"
+          alt="Avatar" loading="lazy"> </div>
+      <div class="chatlog__messages"> <span
+          class="chatlog__author-name" title="Haikol#0000"
+          data-user-id="924937596298207292" style="">Haikol</span> <span
+          class="chatlog__bot-tag">BOT</span> <span
+          class="chatlog__timestamp">02-Jan-22 10:10 AM</span>
+        <div class="chatlog__message "
+          data-message-id="927141882662879264"
+          id="message-927141882662879264" title="Message sent: 02-Jan-22
+          10:10 AM">
+          <div class="chatlog__content">
+            <div class="markdown"> <span class="preserve-whitespace"><em>Not trusting the little bugger, he peers into the hole first before sticking his hand into said hole to grab what is inside.</em></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="chatlog__message-group">
+      <div class="chatlog__author-avatar-container"> <img
+          class="chatlog__author-avatar"
+src="https://cdn.discordapp.com/avatars/576344951319953418/cb25630f3694c6ba673e843fec22bd0c.png?size=128"
+          alt="Avatar" loading="lazy"> </div>
+      <div class="chatlog__messages"> <span
+          class="chatlog__author-name" title="GM#4115"
+          data-user-id="576344951319953418" style="color: rgb(54,57,62)">●</span>
+        <span class="chatlog__timestamp">02-Jan-22 10:11 AM</span>
+        <div class="chatlog__message "
+          data-message-id="927142008613642290"
+          id="message-927142008613642290" title="Message sent: 02-Jan-22
+          10:11 AM">
+          <div class="chatlog__content">
+            <div class="markdown"> <span class="preserve-whitespace">The Aslan sees a couple of eyes staring back at him.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="chatlog__message-group">
+      <div class="chatlog__author-avatar-container"> <img
+          class="chatlog__author-avatar"
+src="https://cdn.discordapp.com/avatars/156081781521645568/28fb8d062c903a690e1308ac9f9190c0.png?size=128"
+          alt="Avatar" loading="lazy"> </div>
+      <div class="chatlog__messages"> <span
+          class="chatlog__author-name" title="Korzan#5552"
+          data-user-id="156081781521645568" style="color:
+          rgb(46,204,113)">Korzan</span> <span
+          class="chatlog__timestamp">02-Jan-22 10:12 AM</span>
+        <div class="chatlog__message "
+          data-message-id="927142311526301716"
+          id="message-927142311526301716" title="Message sent: 02-Jan-22
+          10:12 AM">
+          <div class="chatlog__content">
+            <div class="markdown"> <span class="preserve-whitespace">(IN the hole?!)</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="chatlog__message-group">
+      <div class="chatlog__author-avatar-container"> <img
+          class="chatlog__author-avatar"
+src="https://cdn.discordapp.com/avatars/576344951319953418/cb25630f3694c6ba673e843fec22bd0c.png?size=128"
+          alt="Avatar" loading="lazy"> </div>
+      <div class="chatlog__messages"> <span
+          class="chatlog__author-name" title="GM#4115"
+          data-user-id="576344951319953418" style="color: rgb(54,57,62)">●</span>
+        <span class="chatlog__timestamp">02-Jan-22 10:13 AM</span>
+        <div class="chatlog__message "
+          data-message-id="927142616041140274"
+          id="message-927142616041140274" title="Message sent: 02-Jan-22
+          10:13 AM">
+          <div class="chatlog__content">
+            <div class="markdown"> <span class="preserve-whitespace">The swirling mists make it hard to discern but he's certain there's a couple of human eyeballs staring back at him blankly.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="chatlog__message-group">
+      <div class="chatlog__author-avatar-container"> <img
+          class="chatlog__author-avatar"
+src="https://cdn.discordapp.com/avatars/924937596298207292/661a833f7de5557d4f458cf7e19e74e4.png?size=128"
+          alt="Avatar" loading="lazy"> </div>
+      <div class="chatlog__messages"> <span
+          class="chatlog__author-name" title="Haikol#0000"
+          data-user-id="924937596298207292" style="">Haikol</span> <span
+          class="chatlog__bot-tag">BOT</span> <span
+          class="chatlog__timestamp">02-Jan-22 10:15 AM</span>
+        <div class="chatlog__message "
+          data-message-id="927143152782020658"
+          id="message-927143152782020658" title="Message sent: 02-Jan-22
+          10:15 AM">
+          <div class="chatlog__content">
+            <div class="markdown"> <span class="preserve-whitespace"><em>That's freaking messed up and nasty. Haikol is ever so thankful for his gloved hands and reaches down to collect all that is in the hole.</em></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="chatlog__message-group">
+      <div class="chatlog__author-avatar-container"> <img
+          class="chatlog__author-avatar"
+src="https://cdn.discordapp.com/avatars/576344951319953418/cb25630f3694c6ba673e843fec22bd0c.png?size=128"
+          alt="Avatar" loading="lazy"> </div>
+      <div class="chatlog__messages"> <span
+          class="chatlog__author-name" title="GM#4115"
+          data-user-id="576344951319953418" style="color: rgb(54,57,62)">●</span>
+        <span class="chatlog__timestamp">02-Jan-22 10:22 AM</span>
+        <div class="chatlog__message "
+          data-message-id="927144753756270602"
+          id="message-927144753756270602" title="Message sent: 02-Jan-22
+          10:22 AM">
+          <div class="chatlog__content">
+            <div class="markdown"> <span class="preserve-whitespace">As he pulls at the eyes, all squidgy in between his fingers, they seem to tug behind them optic nerves. These nerves end in what look like augment ports. A highly advanced pair of cybernetic eyes with a subtle 'Designed on Techworld' emblem.
+
+That seems to be it.</span> </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="chatlog__message-group">
+      <div class="chatlog__author-avatar-container"> <img
+          class="chatlog__author-avatar"
+src="https://cdn.discordapp.com/avatars/924937596298207292/306aa92233e1a42c488b69aa1ba81ff1.png?size=128"
+          alt="Avatar" loading="lazy"> </div>
+      <div class="chatlog__messages"> <span
+          class="chatlog__author-name" title="The Arachnid#0000"
+          data-user-id="924937596298207292" style="">The Arachnid</span>
+        <span class="chatlog__bot-tag">BOT</span> <span
+          class="chatlog__timestamp">02-Jan-22 10:22 AM</span>
+        <div class="chatlog__message "
+          data-message-id="927144808533856267"
+          id="message-927144808533856267" title="Message sent: 02-Jan-22
+          10:22 AM">
+          <div class="chatlog__content">
+            <div class="markdown"> <span class="preserve-whitespace">The automaton does a little dance and crawls at a frightening speed up Haikol's arm and attaches as a broach on his vaccsuit.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="chatlog__message-group">
+      <div class="chatlog__author-avatar-container"> <img
+          class="chatlog__author-avatar"
+src="https://cdn.discordapp.com/avatars/924937596298207292/661a833f7de5557d4f458cf7e19e74e4.png?size=128"
+          alt="Avatar" loading="lazy"> </div>
+      <div class="chatlog__messages"> <span
+          class="chatlog__author-name" title="Haikol#0000"
+          data-user-id="924937596298207292" style="">Haikol</span> <span
+          class="chatlog__bot-tag">BOT</span> <span
+          class="chatlog__timestamp">02-Jan-22 10:25 AM</span>
+        <div class="chatlog__message "
+          data-message-id="927145481430249513"
+          id="message-927145481430249513" title="Message sent: 02-Jan-22
+          10:25 AM">
+          <div class="chatlog__content">
+            <div class="markdown"> <span class="preserve-whitespace"><em>Having handled worse in some cases it's still kinda gross. He delicately removes the eyes and the rest of what is in there and puts them into a sealed container. Well, an eyesore to say the least. Now, to admire. He sets the bed down and glances back out the doorway towards the unconcious group. Was the Aslan Female the Captain? He checks the room over, taking in every bit on his suit's recording system to document. The rifle, the sash, the shrine. He's paying more careful respect here.</em></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="chatlog__message-group">
+      <div class="chatlog__author-avatar-container"> <img
+          class="chatlog__author-avatar"
+src="https://cdn.discordapp.com/avatars/924937596298207292/661a833f7de5557d4f458cf7e19e74e4.png?size=128"
+          alt="Avatar" loading="lazy"> </div>
+      <div class="chatlog__messages"> <span
+          class="chatlog__author-name" title="Haikol#0000"
+          data-user-id="924937596298207292" style="">Haikol</span> <span
+          class="chatlog__bot-tag">BOT</span> <span
+          class="chatlog__timestamp">03-Jan-22 06:18 AM</span>
+        <div class="chatlog__message "
+          data-message-id="927445895300132924"
+          id="message-927445895300132924" title="Message sent: 03-Jan-22
+          06:18 AM">
+          <div class="chatlog__content">
+            <div class="markdown"> <span class="preserve-whitespace"><em>Having taken note of everything, Haikol leaves the room and heads for where the crew are at.</em> "We taking anything or what? I have what she wants."</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="chatlog__message-group">
+      <div class="chatlog__author-avatar-container"> <img
+          class="chatlog__author-avatar"
+src="https://cdn.discordapp.com/avatars/924937596298207292/dd4c8d69a383b05dbadd341a5e14b224.png?size=128"
+          alt="Avatar" loading="lazy"> </div>
+      <div class="chatlog__messages"> <span
+          class="chatlog__author-name" title="Peter Percy#0000"
+          data-user-id="924937596298207292" style="">Peter Percy</span>
+        <span class="chatlog__bot-tag">BOT</span> <span
+          class="chatlog__timestamp">03-Jan-22 06:34 AM</span>
+        <div class="chatlog__message "
+          data-message-id="927449926995173408"
+          id="message-927449926995173408" title="Message sent: 03-Jan-22
+          06:34 AM">
+          <div class="chatlog__content">
+            <div class="markdown"> <span class="preserve-whitespace">"I'd like to turn a profit on this one, and there are hints they have some important intel. Also nutso in engineering has sort of done the equivalent or roaring and questioning my honour. Do you think the Aslan in the bridge is likely to talk sensibly?"</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="chatlog__message-group">
+      <div class="chatlog__author-avatar-container"> <img
+          class="chatlog__author-avatar"
+src="https://cdn.discordapp.com/avatars/924937596298207292/661a833f7de5557d4f458cf7e19e74e4.png?size=128"
+          alt="Avatar" loading="lazy"> </div>
+      <div class="chatlog__messages"> <span
+          class="chatlog__author-name" title="Haikol#0000"
+          data-user-id="924937596298207292" style="">Haikol</span> <span
+          class="chatlog__bot-tag">BOT</span> <span
+          class="chatlog__timestamp">03-Jan-22 06:39 AM</span>
+        <div class="chatlog__message "
+          data-message-id="927451104667635732"
+          id="message-927451104667635732" title="Message sent: 03-Jan-22
+          06:39 AM">
+          <div class="chatlog__content">
+            <div class="markdown"> <span class="preserve-whitespace">"She'll be angry and not likely to deal with you but maybe. She's asleep right now so you got ten minutes."</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="chatlog__message-group">
+      <div class="chatlog__author-avatar-container"> <img
+          class="chatlog__author-avatar"
+src="https://cdn.discordapp.com/avatars/924937596298207292/dd4c8d69a383b05dbadd341a5e14b224.png?size=128"
+          alt="Avatar" loading="lazy"> </div>
+      <div class="chatlog__messages"> <span
+          class="chatlog__author-name" title="Peter Percy#0000"
+          data-user-id="924937596298207292" style="">Peter Percy</span>
+        <span class="chatlog__bot-tag">BOT</span> <span
+          class="chatlog__timestamp">03-Jan-22 06:52 AM</span>
+        <div class="chatlog__message "
+          data-message-id="927454408596422676"
+          id="message-927454408596422676" title="Message sent: 03-Jan-22
+          06:52 AM">
+          <div class="chatlog__content">
+            <div class="markdown"> <span class="preserve-whitespace">"Any chance she would deal with you?"</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="chatlog__message-group">
+      <div class="chatlog__author-avatar-container"> <img
+          class="chatlog__author-avatar"
+src="https://cdn.discordapp.com/avatars/924937596298207292/661a833f7de5557d4f458cf7e19e74e4.png?size=128"
+          alt="Avatar" loading="lazy"> </div>
+      <div class="chatlog__messages"> <span
+          class="chatlog__author-name" title="Haikol#0000"
+          data-user-id="924937596298207292" style="">Haikol</span> <span
+          class="chatlog__bot-tag">BOT</span> <span
+          class="chatlog__timestamp">03-Jan-22 06:54 AM</span>
+        <div class="chatlog__message "
+          data-message-id="927454811518042163"
+          id="message-927454811518042163" title="Message sent: 03-Jan-22
+          06:54 AM">
+          <div class="chatlog__content">
+            <div class="markdown"> <span class="preserve-whitespace">"Maybe, we shall see. But you need to deal with the idiot in engineering."</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="chatlog__message-group">
+      <div class="chatlog__author-avatar-container"> <img
+          class="chatlog__author-avatar"
+src="https://cdn.discordapp.com/avatars/924937596298207292/dd4c8d69a383b05dbadd341a5e14b224.png?size=128"
+          alt="Avatar" loading="lazy"> </div>
+      <div class="chatlog__messages"> <span
+          class="chatlog__author-name" title="Peter Percy#0000"
+          data-user-id="924937596298207292" style="">Peter Percy</span>
+        <span class="chatlog__bot-tag">BOT</span> <span
+          class="chatlog__timestamp">03-Jan-22 07:00 AM</span>
+        <div class="chatlog__message "
+          data-message-id="927456436613697646"
+          id="message-927456436613697646" title="Message sent: 03-Jan-22
+          07:00 AM">
+          <div class="chatlog__content">
+            <div class="markdown"> <span class="preserve-whitespace">"I'll keep her talking for a bit, can you give Kshi a hand with the angry guy in the fresher. I'm going to drag 'Dear Arthil' here up to the common room. I figure while we keep him hostage but unharmed Nutso is stuck."</span>
+              <span class="chatlog__edited-timestamp" title="03-Jan-22
+                07:23 AM">(edited)</span> </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="postamble">
+      <div class="postamble__entry">Exported 101 message(s)</div>
+    </div>
+  </body>
+</html>
